@@ -1,5 +1,13 @@
+:root {
+  --primary-white: #fafafa;
+  --secondary-white: #ededed;
+  --primary-grey: #d6d6d6;
+  --primary-black: #050505;
+  --lighter-black: #333333;
+  --dark-blue: #00031c;
+}
+
 body {
-  margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
@@ -7,7 +15,31 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.navbar {
+  padding: 1.5rem 15%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--primary-white);
+}
+
+.nav-btns {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+
+.account-btns {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+
+  &>a>.btn {
+    background-color: var(--secondary-white);
+    color: var(--dark-blue);
+
+    &:hover {
+      background-color: var(--primary-grey);
+    }
+  }
 }
