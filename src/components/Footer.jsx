@@ -4,7 +4,7 @@ export default function Footer() {
   return (
     <section className="footer">
       <div className="social">
-        <h3>Homes</h3>
+        <h3>Holmes</h3>
         <div>
           <LogosFacebook />
           <LogosLinkedinIcon />

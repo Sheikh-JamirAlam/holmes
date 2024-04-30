@@ -1,7 +1,7 @@
 export default function Navbar() {
   return (
     <section className="navbar">
-      <div className="logo">Homes</div>
+      <div className="logo">Holmes</div>
       <div className="nav-btns">
         <p>Home</p>
         <p>About</p>

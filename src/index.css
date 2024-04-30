@@ -21,6 +21,10 @@ body {
   justify-content: space-between;
   align-items: center;
   color: var(--primary-white);
+
+  &>div {
+    z-index: 1;
+  }
 }
 
 .nav-btns {
