@@ -10,8 +10,6 @@ body {
 
 main {
   background-color: var(--primary-white);
-  /* position: relative;
-  z-index: -5; */
 }
 
 .logo {
@@ -38,7 +36,7 @@ main {
   box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
 
   &:hover {
-    background-color: var(--lighter-black);
+    background-color: var(--lighter-blue);
   }
 
   &:active {
@@ -55,7 +53,6 @@ main {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  /* z-index: -1; */
 }
 
 .hero-container {
@@ -98,6 +95,7 @@ main {
   &>p {
     font-size: 14px;
     font-weight: 700;
+    margin-left: 0.25rem;
   }
 
   &>input {
@@ -105,7 +103,7 @@ main {
     padding: 0.75rem;
     margin-top: 0.5rem;
     border: none;
-    border-radius: 10px;
+    border-radius: 5px;
     outline: none;
     font-family: Inter, sans-serif;
     background-color: var(--secondary-white);
@@ -113,6 +111,53 @@ main {
 
   &:nth-child(1)>input {
     width: 16rem;
+  }
+
+  &>.hero-search-options {
+    width: 20rem;
+    margin-top: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    border-radius: 5px;
+    background-color: var(--primary-white);
+    box-shadow: 0 2px 16px 0 rgb(0 0 0 / 0.1);
+    font-size: 14px;
+
+    &>p {
+      padding: 0.5rem;
+      font-weight: 600;
+    }
+
+    &>div {
+      padding: 0.75rem 0.5rem;
+      border-bottom: 1px solid var(--primary-grey);
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+      cursor: pointer;
+
+      &:last-child {
+        border-bottom: none;
+      }
+
+      &:hover {
+        background-color: var(--secondary-white);
+      }
+
+      &>svg {
+        font-size: 32px;
+      }
+
+      &>div {
+        font-size: 12px;
+
+        &>h2 {
+          font-size: 14px;
+          margin-bottom: 0.25rem;
+        }
+      }
+    }
   }
 }
 
@@ -229,8 +274,6 @@ main {
 .video-container {
   padding: 5rem 10rem;
   background-color: var(--secondary-white);
-  /* position: relative;
-  z-index: -2; */
   color: var(--primary-white);
 
   &>div {

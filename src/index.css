@@ -2,9 +2,11 @@
   --primary-white: #fafafa;
   --secondary-white: #ededed;
   --primary-grey: #d6d6d6;
+  --darker-grey: #545454;
   --primary-black: #050505;
   --lighter-black: #333333;
   --dark-blue: #00031c;
+  --lighter-blue: #353752;
 }
 
 body {
@@ -31,19 +33,36 @@ body {
   display: flex;
   gap: 2rem;
   align-items: center;
+
+  &>a {
+    color: var(--primary-white);
+    text-decoration: none;
+  }
 }
 
 .account-btns {
   display: flex;
-  gap: 1rem;
+  gap: 2rem;
   align-items: center;
 
-  &>a>.btn {
-    background-color: var(--secondary-white);
-    color: var(--dark-blue);
+  &>a {
+    text-decoration: none;
 
-    &:hover {
-      background-color: var(--primary-grey);
+    &>.btn {
+      background-color: var(--secondary-white);
+      color: var(--dark-blue);
+
+      &:hover {
+        background-color: var(--primary-grey);
+      }
+    }
+
+    &>p {
+      color: var(--primary-white);
     }
   }
+}
+
+.hidden {
+  display: none !important;
 }

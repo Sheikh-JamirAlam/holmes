@@ -1,10 +1,15 @@
-import Navbar from "../../components/Navbar";
-import OfferItem from "../../components/OfferItem";
-import PopularItem from "../../components/PopularItem";
-import Footer from "../../components/Footer";
-import "./Home.css";
+import { useState } from "react";
+import Navbar from "../components/Navbar";
+import OfferItem from "../components/OfferItem";
+import PopularItem from "../components/PopularItem";
+import Footer from "../components/Footer";
+import "../styles/Home.css";
+import { Location } from "../components/Icons";
 
 export default function Home() {
+  const [isLocationOptionsOpen, setIsLocationOptionsOpen] = useState(false);
+  const [locationText, setLocationText] = useState("");
+
   return (
     <main>
       {/* Navbar */}
@@ -16,11 +21,58 @@ export default function Home() {
         <div className="hero-search-container">
           <div className="hero-search-filter">
             <p>Location</p>
-            <input type="text" placeholder="Kolkata, India" />
+            <input
+              value={locationText}
+              type="text"
+              placeholder="Where are you going?"
+              onChange={(e) => setLocationText(e.target.value)}
+              onFocus={() => setIsLocationOptionsOpen(true)}
+              onBlur={() => setIsLocationOptionsOpen(false)}
+            />
+            {isLocationOptionsOpen && (
+              <div className={`hero-search-options`}>
+                <p>Popular nearby destinations</p>
+                <div onClick={(e) => console.log("t")}>
+                  <Location />
+                  <div>
+                    <h2>Kolkata</h2>
+                    <p>India</p>
+                  </div>
+                </div>
+                <div>
+                  <Location />
+                  <div>
+                    <h2>Delhi</h2>
+                    <p>India</p>
+                  </div>
+                </div>
+                <div>
+                  <Location />
+                  <div>
+                    <h2>Mumbai</h2>
+                    <p>India</p>
+                  </div>
+                </div>
+                <div>
+                  <Location />
+                  <div>
+                    <h2>Bengaluru</h2>
+                    <p>India</p>
+                  </div>
+                </div>
+                <div>
+                  <Location />
+                  <div>
+                    <h2>Kerala</h2>
+                    <p>India</p>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
           <div className="hero-search-filter">
             <p>Type</p>
-            <input type="text" placeholder="Flat" />
+            <input className="test" type="text" placeholder="Flat" />
           </div>
           <div className="hero-search-filter">
             <p>Price Range</p>

@@ -6,15 +6,17 @@ export default function Navbar() {
         <p>Home</p>
         <p>About</p>
         <p>Location</p>
-        <p>Contact</p>
-        <div className="account-btns">
-          <a href="/signup">
-            <button className="btn">Signup</button>
-          </a>
-          <a href="/login">
-            <button className="btn">Login</button>
-          </a>
-        </div>
+        <a href="/contact-us">
+          <p>Contact</p>
+        </a>
+      </div>
+      <div className="account-btns">
+        <a href="/login">
+          <p>Login</p>
+        </a>
+        <a href="/signup">
+          <button className="btn">Sign up</button>
+        </a>
       </div>
     </section>
   );
