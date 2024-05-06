@@ -1,0 +1,35 @@
+.search-bg {
+  padding: 0;
+
+  &>.hero-bg {
+    height: 12rem;
+  }
+
+  &>.search-container {
+    width: 100%;
+    margin-top: 1.75rem;
+    display: flex;
+    justify-content: center;
+    z-index: 3;
+
+    &>.search-bar {
+      width: 70%;
+      padding: 1rem 1rem;
+      display: flex;
+      gap: 0.5rem;
+      background-color: var(--secondary-white);
+      border-radius: 5px;
+
+      &>svg {
+        font-size: 22px;
+      }
+
+      &>input {
+        width: 100%;
+        background-color: transparent;
+        border: none;
+        outline: none;
+      }
+    }
+  }
+}

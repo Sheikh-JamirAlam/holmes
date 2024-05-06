@@ -2,11 +2,13 @@
   --primary-white: #fafafa;
   --secondary-white: #ededed;
   --primary-grey: #d6d6d6;
+  --lighter-grey: #bfbfbf;
   --darker-grey: #545454;
   --primary-black: #050505;
   --lighter-black: #333333;
   --dark-blue: #00031c;
   --lighter-blue: #353752;
+  --accent-blue: #0a76f2;
 }
 
 body {
@@ -51,9 +53,21 @@ body {
     &>.btn {
       background-color: var(--secondary-white);
       color: var(--dark-blue);
+      border: 2px solid var(--secondary-white);
 
       &:hover {
         background-color: var(--primary-grey);
+        border-color: var(--primary-grey);
+      }
+    }
+
+    &>.secondary-btn {
+      background-color: transparent;
+      color: var(--primary-white);
+
+      &:hover {
+        background-color: transparent;
+        border-color: var(--lighter-grey);
       }
     }
 

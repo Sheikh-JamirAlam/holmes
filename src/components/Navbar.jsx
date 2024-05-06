@@ -3,7 +3,9 @@ export default function Navbar() {
     <section className="navbar">
       <div className="logo">Holmes</div>
       <div className="nav-btns">
-        <p>Home</p>
+        <a href="/">
+          <p>Home</p>
+        </a>
         <p>About</p>
         <p>Location</p>
         <a href="/contact-us">
@@ -12,7 +14,7 @@ export default function Navbar() {
       </div>
       <div className="account-btns">
         <a href="/login">
-          <p>Login</p>
+          <button className="btn secondary-btn">Login</button>
         </a>
         <a href="/signup">
           <button className="btn">Sign up</button>

@@ -1,14 +1,34 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import Navbar from "../components/Navbar";
-import OfferItem from "../components/OfferItem";
-import PopularItem from "../components/PopularItem";
+import OfferItem from "../components/home/OfferItem";
+import PopularItem from "../components/home/PopularItem";
 import Footer from "../components/Footer";
+import SearchOptionItem from "../components/home/SearchOptionItem";
+import SearchOptionPrice from "../components/home/SearchOptionPrice";
 import "../styles/Home.css";
-import { Location } from "../components/Icons";
 
 export default function Home() {
   const [isLocationOptionsOpen, setIsLocationOptionsOpen] = useState(false);
   const [locationText, setLocationText] = useState("");
+  const [isTypeOptionsOpen, setIsTypeOptionsOpen] = useState(false);
+  const [typeText, setTypeText] = useState("");
+  const [isPriceOptionsOpen, setIsPriceOptionsOpen] = useState(false);
+  const [priceText, setPriceText] = useState("");
+  const locationRef = useRef([]);
+
+  useEffect(() => {
+    document.addEventListener("click", (e) => {
+      if (!locationRef.current[0].contains(e.target)) {
+        setIsLocationOptionsOpen(false);
+      }
+      if (!locationRef.current[1].contains(e.target)) {
+        setIsTypeOptionsOpen(false);
+      }
+      if (!locationRef.current[2].contains(e.target)) {
+        setIsPriceOptionsOpen(false);
+      }
+    });
+  });
 
   return (
     <main>
@@ -21,62 +41,37 @@ export default function Home() {
         <div className="hero-search-container">
           <div className="hero-search-filter">
             <p>Location</p>
-            <input
-              value={locationText}
-              type="text"
-              placeholder="Where are you going?"
-              onChange={(e) => setLocationText(e.target.value)}
-              onFocus={() => setIsLocationOptionsOpen(true)}
-              onBlur={() => setIsLocationOptionsOpen(false)}
-            />
-            {isLocationOptionsOpen && (
-              <div className={`hero-search-options`}>
+            <div ref={(el) => (locationRef.current[0] = el)}>
+              <input value={locationText} type="text" placeholder="Where are you going?" onChange={(e) => setLocationText(e.target.value)} onClick={() => setIsLocationOptionsOpen(true)} />
+              <div className={`hero-search-options ${!isLocationOptionsOpen && "hidden"}`}>
                 <p>Popular nearby destinations</p>
-                <div onClick={(e) => console.log("t")}>
-                  <Location />
-                  <div>
-                    <h2>Kolkata</h2>
-                    <p>India</p>
-                  </div>
-                </div>
-                <div>
-                  <Location />
-                  <div>
-                    <h2>Delhi</h2>
-                    <p>India</p>
-                  </div>
-                </div>
-                <div>
-                  <Location />
-                  <div>
-                    <h2>Mumbai</h2>
-                    <p>India</p>
-                  </div>
-                </div>
-                <div>
-                  <Location />
-                  <div>
-                    <h2>Bengaluru</h2>
-                    <p>India</p>
-                  </div>
-                </div>
-                <div>
-                  <Location />
-                  <div>
-                    <h2>Kerala</h2>
-                    <p>India</p>
-                  </div>
-                </div>
+                <SearchOptionItem city="Kolkata" state="India" setLocationText={setLocationText} setIsLocationOptionsOpen={setIsLocationOptionsOpen} />
+                <SearchOptionItem city="Delhi" state="India" setLocationText={setLocationText} setIsLocationOptionsOpen={setIsLocationOptionsOpen} />
+                <SearchOptionItem city="Mumbai" state="India" setLocationText={setLocationText} setIsLocationOptionsOpen={setIsLocationOptionsOpen} />
+                <SearchOptionItem city="Kerala" state="India" setLocationText={setLocationText} setIsLocationOptionsOpen={setIsLocationOptionsOpen} />
+                <SearchOptionItem city="Bangaluru" state="India" setLocationText={setLocationText} setIsLocationOptionsOpen={setIsLocationOptionsOpen} />
               </div>
-            )}
+            </div>
           </div>
           <div className="hero-search-filter">
             <p>Type</p>
-            <input className="test" type="text" placeholder="Flat" />
+            <div ref={(el) => (locationRef.current[1] = el)}>
+              <input value={typeText} type="text" placeholder="Flat, Paying Guest" onChange={(e) => setTypeText(e.target.value)} onClick={() => setIsTypeOptionsOpen(true)} readOnly />
+              <div className={`hero-search-options ${!isTypeOptionsOpen && "hidden"}`}>
+                <p>Popular nearby destinations</p>
+                <SearchOptionItem setTypeText={setTypeText} setIsTypeOptionsOpen={setIsTypeOptionsOpen} />
+              </div>
+            </div>
           </div>
           <div className="hero-search-filter">
             <p>Price Range</p>
-            <input type="text" placeholder="Upto ₹10,000" />
+            <div ref={(el) => (locationRef.current[2] = el)}>
+              <input value={priceText} type="text" placeholder="Set your budget" onChange={(e) => setPriceText(e.target.value)} onClick={() => setIsPriceOptionsOpen(true)} readOnly />
+              <div className={`hero-search-options ${!isPriceOptionsOpen && "hidden"}`}>
+                <p>Popular nearby destinations</p>
+                <SearchOptionPrice setPriceText={setPriceText} setIsPriceOptionsOpen={setIsPriceOptionsOpen} />
+              </div>
+            </div>
           </div>
           <button className="btn">Search</button>
         </div>
