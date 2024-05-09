@@ -2,34 +2,283 @@
   padding: 0;
 
   &>.hero-bg {
-    height: 12rem;
+    height: 6rem;
   }
 
   &>.search-container {
-    width: 100%;
+    width: 80%;
     margin-top: 1.75rem;
     display: flex;
     justify-content: center;
+    gap: 2rem;
     z-index: 3;
 
+
     &>.search-bar {
-      width: 70%;
-      padding: 1rem 1rem;
+      width: 100%;
+      padding: 0.5rem 1rem;
       display: flex;
-      gap: 0.5rem;
-      background-color: var(--secondary-white);
-      border-radius: 5px;
+      gap: 1rem;
+      align-items: center;
+      background-color: var(--primary-white);
+      border: 2px solid var(--primary-grey);
+      border-radius: 10px;
+
+      &:has(input:focus) {
+        border: 2px solid var(--accent-blue);
+
+        &>svg {
+          color: var(--accent-blue);
+        }
+      }
 
       &>svg {
         font-size: 22px;
+        color: var(--lighter-grey);
       }
 
       &>input {
         width: 100%;
+        height: 2.5rem;
         background-color: transparent;
         border: none;
         outline: none;
+        font-family: Inter, sans-serif;
       }
+    }
+
+    &>.btn {
+      width: 7.25rem;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+
+      &>svg {
+        font-size: 20px;
+      }
+    }
+  }
+}
+
+.search-main-container {
+  width: 80%;
+  padding: 2rem 0;
+  margin: 0 auto;
+  display: flex;
+  gap: 2rem;
+
+  &>.search-filter-container {
+    width: 15%;
+    display: flex;
+    flex-direction: column;
+
+    &>div {
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      font-size: 14px;
+      border: 1px solid var(--primary-grey);
+      border-bottom: 0;
+
+      &>h2 {
+        margin-bottom: 0.5rem;
+        font-size: 14px;
+      }
+
+      &>label {
+        height: 1.5rem;
+
+        &>.MuiTypography-root {
+          font-size: 14px;
+          font-family: Inter, sans-serif;
+        }
+      }
+
+      &>.numeric {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      &:nth-last-child(1) {
+        border-bottom: 1px solid var(--primary-grey);
+        border-radius: 0 0 10px 10px;
+      }
+    }
+
+    &>.search-filter-heading {
+      padding: 0.5rem 1rem;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      border-radius: 10px 10px 0 0;
+
+      &>h3 {
+        font-size: 16px;
+      }
+
+      &>p {
+        cursor: pointer;
+      }
+    }
+  }
+
+  &>.search-result-container {
+    width: 85%;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 2rem;
+
+    &>div:nth-child(1) {
+      display: flex;
+      grid-column: span 3 / span 3;
+      justify-content: space-between;
+
+      &>h2 {
+        font-size: 16px;
+      }
+    }
+
+    &>div:nth-last-child(1) {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      grid-column: span 3 / span 3;
+
+      &>nav>ul>li {
+
+        &:nth-child(1)>button,
+        &:nth-last-child(1)>button {
+          color: var(--accent-blue);
+        }
+
+        &>button {
+          font-weight: 700;
+          font-family: Inter, sans-serif;
+        }
+      }
+    }
+  }
+}
+
+.search-item-container {
+  border-radius: 10px;
+  box-shadow: 0 2px 16px 0 rgb(0 0 0 / 0.1);
+  cursor: pointer;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+
+  &:active {
+    transform: scale(0.975);
+  }
+
+  &>.search-item-img {
+    width: 100%;
+    height: 12rem;
+    background-image: url("https://www.thespruce.com/thmb/vf_MEDifLRzzmQNjMyUDR1FGA14=/3000x0/filters:no_upscale():max_bytes(150000):strip_icc()/tips-for-decorating-a-beautiful-bedroom-1976169-hero-e960fbb8311c4b9b875a1813962d34eb.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    border-radius: 10px;
+  }
+
+  &>.search-item-details {
+    padding: 0.5rem 0.75rem 0.75rem;
+    font-size: 14px;
+
+    &>h1 {
+      font-size: 16px;
+    }
+
+    &>div {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      &>span {
+        background-color: var(--primary-grey);
+        padding: 0.1rem 0.25rem;
+      }
+    }
+
+    &>.divider {
+      height: 2px;
+      margin: 0.5rem 0;
+      background-color: var(--primary-grey);
+    }
+
+    &>.search-item-features>div {
+      font-size: 12px;
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+      color: var(--secondary-grey);
+      font-weight: 600;
+
+      &>svg {
+        font-size: 16px;
+      }
+    }
+  }
+}
+
+.search-sort-container {
+  &>button {
+    padding: 0.75rem 1rem;
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    border: 2px solid var(--primary-grey);
+    border-radius: 10px;
+    outline: none;
+    background-color: transparent;
+    color: var(--darker-grey);
+    cursor: pointer;
+    transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 300ms;
+    font-family: Inter, sans-serif;
+
+    &:hover {
+      border-color: var(--accent-blue);
+    }
+
+    &>svg {
+      font-size: 16px;
+    }
+  }
+}
+
+.sort-options {
+  width: 15rem;
+  margin-top: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  z-index: 5;
+  border-radius: 5px;
+  background-color: var(--primary-white);
+  box-shadow: 0 2px 16px 0 rgb(0 0 0 / 0.1);
+  font-size: 14px;
+
+  &>div {
+    padding: 0.75rem 0.5rem;
+    border-bottom: 1px solid var(--primary-grey);
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    cursor: pointer;
+    border-radius: 5px 5px 0 0;
+    font-size: 12px;
+
+    &:last-child {
+      border-bottom: none;
+      border-radius: 0 0 5px 5px;
+    }
+
+    &:hover {
+      background-color: var(--secondary-white);
     }
   }
 }

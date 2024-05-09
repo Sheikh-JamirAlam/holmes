@@ -52,7 +52,7 @@ main {
   width: 100%;
   height: 27rem;
   position: absolute;
-  background-image: url("https://s3-alpha-sig.figma.com/img/5764/7375/b99c66cc466ec8cc073a8a1657b41c3d?Expires=1714953600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=bpPgHqiMs-BPWN~w0dOInldfIy0jrku2DSEq5bPX6Aogd67dbilALeHciFTSuLcHB9LFHxmbWXJsPhcRwQ-JJgKv~sagYPSsn5vd~4iKZpSbrid2nNKDkHdpBJ4peA06CJtC7TwVY95bk0CtRxdxJ6pHb1Qo7kg~tfIoqpsQXQBZ~HwZudJBA9dwVbgMGft5rGrmV1rnbuFE-e-jDCh1ANXsU7XiQJBbyVorcXLXv1FTrenMjwcyfoGd9GK6HFBW7RbQLCqgKSLiUiwYzbIn11TPUtnOTeZ5Nd104LHsL7SqfS0N9reIdaeapxgrIwhf-zyb0NY6IH6lvNUSW1znew__");
+  background-image: url("../../public/images/hero-bg.jpeg");
   top: 0;
   background-size: cover;
   background-repeat: no-repeat;
