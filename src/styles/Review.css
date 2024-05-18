@@ -1,0 +1,76 @@
+
+.from{
+    /* text-align: center; */
+    /* align-items: center; */
+    /* justify-content: center; */
+    padding-left: 25rem;
+    padding-right: 25rem ;
+}
+
+.create{
+    padding-top: 30px;
+    font-size: 25px;
+}
+
+.custom-textarea {
+    width: 100%;
+    height: 50px;
+    padding: 10px;
+    margin-top: 15px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 16px;
+    resize: vertical; /* Allows vertical resizing only */
+  }
+  
+hr {
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+
+
+.Pg{
+    padding-top: 15px;
+}
+
+.overall-rating{
+    padding-bottom: 20px;
+}
+
+.add-photo{
+    padding-bottom: 18px;
+}
+
+.what{
+    width: 100%;
+    height: 30px;
+}
+
+.add-headline{
+    padding-bottom: 18px;
+}
+
+.write{
+    padding-top: 15px;
+}
+
+.custom-textarea2 {
+    width: 100%;
+    height: 150px;
+    padding: 10px;
+    margin-top: 15px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 16px;
+    resize: vertical; /* Allows vertical resizing only */
+  }
+
+.button{
+    color: #000;
+    background-color: #fafafa;
+}
+
+.button:hover{
+    color: #000;
+    /* background-color: #000; */
+}

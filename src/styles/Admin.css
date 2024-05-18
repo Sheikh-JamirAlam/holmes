@@ -1,0 +1,140 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    background-color: var(--secondary-white);
+    font-family: Inter, sans-serif;
+  }
+  
+  .admin-container {
+    background-color: var(--primary-white);
+    width: 30rem;
+    padding: 3rem;
+    margin: 10rem auto;
+    border-radius: 15px;
+  }
+  
+  .heading {
+    font-size: 36px;
+    margin-bottom: 0.5rem;
+    font-family: Expletus Sans, sans-serif;
+    font-weight: 700;
+    color: var(--dark-blue);
+  }
+  
+  .input-container {
+    display: grid;
+    gap: 1rem;
+    margin: 1.5rem 0;
+  }
+  
+  .input {
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--secondary-white);
+    border-radius: 5px;
+    display: flex;
+    gap: 0.5rem;
+  
+    & span {
+      display: flex;
+      font-size: 18px;
+      cursor: pointer;
+    }
+  
+    &>input,
+    &>textarea {
+      width: 100%;
+      background-color: transparent;
+      font-family: Inter, sans-serif;
+      font-size: 14px;
+      border: none;
+      outline: none;
+  
+      &::-webkit-inner-spin-button,
+      &::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+    }
+  
+    &>textarea {
+      resize: none;
+  
+      &::-webkit-scrollbar {
+        display: none;
+      }
+    }
+  }
+  
+  .img-input {
+    gap: 1rem;
+  
+    &>input {
+      display: none;
+    }
+  
+    &>label {
+      width: 5rem;
+      height: 5rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: 2px dashed var(--primary-grey);
+      border-radius: 10px;
+      cursor: pointer;
+  
+      &>svg {
+        font-size: 30px;
+        color: var(--primary-grey);
+      }
+    }
+  
+    &>img {
+      width: 5rem;
+      height: 5rem;
+    }
+  }
+  
+  .button {
+    margin: 0.5rem 0 0;
+    padding: 0.75rem 1rem;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+    background-color: var(--dark-blue);
+    color: var(--primary-white);
+    font-family: Inter, sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    cursor: pointer;
+    transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 150ms;
+  
+    &:hover {
+      background-color: var(--lighter-blue);
+    }
+  
+    &:active {
+      transform: scale(0.95);
+    }
+  }
+  
+  .signup {
+    &>a {
+      text-decoration: none;
+      color: var(--dark-blue);
+      font-weight: 700;
+    }
+  }
+  
+  .close-cross {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    font-size: 24px;
+    color: var(--darker-grey);
+  }
