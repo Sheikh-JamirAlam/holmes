@@ -46,6 +46,10 @@ body {
   display: flex;
   gap: 0.5rem;
 
+  &.pass-error {
+    border: 1px solid rgb(238, 13, 13);
+  }
+
   & span {
     display: flex;
     font-size: 18px;

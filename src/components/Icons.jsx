@@ -124,6 +124,55 @@ export function UpDown(props) {
   );
 }
 
+export function AcUnit(props) {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" {...props}>
+      <path
+        fill="currentColor"
+        d="m11 17.85l-2.575 2.525q-.275.275-.687.275t-.688-.3q-.3-.275-.3-.687t.3-.713L11 15v-2H9l-3.975 3.975q-.275.275-.687.275t-.713-.3q-.275-.275-.275-.687t.275-.688L6.15 13H2.975q-.425 0-.7-.288T2 12t.288-.712T3 11h3.15L3.625 8.45q-.275-.275-.275-.687t.3-.713q.275-.275.688-.275t.712.275L9 11h2V9L7.025 5.05q-.275-.275-.275-.687t.3-.713q.275-.275.688-.275t.687.275L11 6.15V3q0-.425.288-.712T12 2t.713.288T13 3v3.15l2.55-2.5q.275-.275.688-.275t.712.275q.275.3.275.713t-.275.687L13 9v2h2l3.95-3.95q.275-.275.688-.275t.712.3q.275.275.275.687t-.275.688L17.85 11H21q.425 0 .713.288T22 12t-.288.713T21 13h-3.15l2.5 2.575q.275.275.275.688t-.275.687q-.3.3-.712.3t-.688-.3L15 13h-2v2l3.95 3.975q.275.275.275.688t-.3.712q-.275.275-.687.275t-.688-.275L13 17.85v3.175q0 .425-.288.7T12 22t-.712-.288T11 21z"
+      ></path>
+    </svg>
+  );
+}
+
+export function Wifi(props) {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" {...props}>
+      <path
+        fill="currentColor"
+        d="M12 20.423q-.646 0-1.092-.446t-.446-1.092t.446-1.093T12 17.346t1.092.446t.446 1.093t-.446 1.092t-1.092.446m0-8.885q1.76 0 3.313.6t2.793 1.67q.25.202.262.506t-.206.524q-.214.214-.522.207q-.307-.007-.557-.203q-1.027-.861-2.331-1.352Q13.448 13 12 13t-2.752.49t-2.33 1.352q-.25.196-.558.2t-.522-.21q-.213-.219-.203-.523t.26-.507q1.24-1.07 2.793-1.666q1.552-.598 3.312-.598m0-6q3.048 0 5.676 1.054t4.674 2.93q.25.213.265.53t-.203.536q-.233.233-.55.198t-.587-.263q-1.858-1.667-4.23-2.595T12 7t-5.045.928t-4.23 2.595q-.27.227-.587.263t-.55-.198q-.219-.219-.203-.536t.265-.53q2.046-1.876 4.674-2.93T12 5.538"
+      ></path>
+    </svg>
+  );
+}
+
+export function AddCircle(props) {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 20 20" {...props}>
+      <path
+        fill="currentColor"
+        d="M6 10a.5.5 0 0 1 .5-.5h3v-3a.5.5 0 0 1 1 0v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3A.5.5 0 0 1 6 10m4 8a8 8 0 1 0 0-16a8 8 0 0 0 0 16m0-1a7 7 0 1 1 0-14a7 7 0 0 1 0 14"
+      ></path>
+    </svg>
+  );
+}
+
+export function SubtractCircle(props) {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 20 20" {...props}>
+      <path fill="currentColor" d="M6 10a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 6 10m4 8a8 8 0 1 0 0-16a8 8 0 0 0 0 16m0-1a7 7 0 1 1 0-14a7 7 0 0 1 0 14"></path>
+    </svg>
+  );
+}
+
+export function Star(props) {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" {...props}>
+      <path fill="currentColor" d="m5.825 21l1.625-7.025L2 9.25l7.2-.625L12 2l2.8 6.625l7.2.625l-5.45 4.725L18.175 21L12 17.275z"></path>
+    </svg>
+  );
+}
+
 export function LogosFacebook(props) {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" {...props}>

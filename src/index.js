@@ -7,6 +7,9 @@ import Search from "./routes/Search";
 import Login from "./routes/Login";
 import Signup from "./routes/Signup";
 import ContactUs from "./routes/ContactUs";
+import AboutUs from "./routes/AboutUs";
+import Profile from "./routes/Profile";
+import Product from "./routes/Product";
 
 const router = createBrowserRouter([
   {
@@ -28,6 +31,18 @@ const router = createBrowserRouter([
   {
     path: "/search",
     element: <Search />,
+  },
+  {
+    path: "/rooms",
+    element: <Product />,
+  },
+  {
+    path: "/about-us",
+    element: <AboutUs />,
+  },
+  {
+    path: "/profile",
+    element: <Profile />,
   },
 ]);
 

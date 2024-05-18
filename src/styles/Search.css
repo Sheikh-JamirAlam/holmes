@@ -1,3 +1,8 @@
+.search-hero-bg {
+  background-image: none;
+  background-color: var(--primary-black);
+}
+
 .search-bg {
   padding: 0;
 

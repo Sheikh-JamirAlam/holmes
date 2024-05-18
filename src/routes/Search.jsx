@@ -41,7 +41,7 @@ export default function Search() {
     <main>
       <Navbar />
       <section className="hero-container search-bg">
-        <div className="hero-bg"></div>
+        <div className="hero-bg search-hero-bg"></div>
         <div className="search-container">
           <div className="search-bar">
             <SearchIcon />
