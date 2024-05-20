@@ -10,6 +10,7 @@ import ContactUs from "./routes/ContactUs";
 import AboutUs from "./routes/AboutUs";
 import Profile from "./routes/Profile";
 import Product from "./routes/Product";
+import Payment from "./routes/Payment";
 import AdminLogin from "./routes/AdminLogin";
 
 const router = createBrowserRouter([
@@ -44,10 +45,6 @@ const router = createBrowserRouter([
   {
     path: "/profile",
     element: <Profile />,
-  },
-  {
-    path: "/admin-login",
-    element: <AdminLogin />,
   },
 ]);
 
