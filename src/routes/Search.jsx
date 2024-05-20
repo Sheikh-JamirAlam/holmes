@@ -31,7 +31,7 @@ export default function Search() {
 
   useEffect(() => {
     document.addEventListener("click", (e) => {
-      if (!sortRef.current.contains(e.target)) {
+      if (!sortRef.current?.contains(e.target)) {
         setIsSortOpen(false);
       }
     });
@@ -41,7 +41,7 @@ export default function Search() {
     <main>
       <Navbar />
       <section className="hero-container search-bg">
-        <div className="hero-bg search-hero-bg"></div>
+        <div id="heroBG" className="hero-bg search-hero-bg"></div>
         <div className="search-container">
           <div className="search-bar">
             <SearchIcon />

@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import Cookies from "js-cookie";
 import { CrossInCircle, PhEye, PhEyeClosed } from "../components/Icons";
 import "../styles/Login.css";
 
@@ -14,6 +15,12 @@ export default function Signup() {
   const [pass, setPass] = useState("");
   const [cpass, setCpass] = useState("");
 
+  useEffect(() => {
+    if (Cookies.get("auth")) {
+      navigate("/");
+    }
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
   async function handleSignup(e) {
     if (pass !== cpass) {
       setIsPassError(true);
@@ -21,13 +28,16 @@ export default function Signup() {
       try {
         const getRes = await axios.get(`http://localhost:8080/api/user/getuserbyemail=${email}`);
         if (!getRes.data.userEmail) {
-          await axios.post("http://localhost:8080/api/user/signup", {
+          const res = await axios.post("http://localhost:8080/api/user/signup", {
             userName: name,
             userContact: contact,
             userEmail: email,
             userPass: pass,
           });
-          navigate("/home");
+          if (res.data === "Login successful") {
+            Cookies.set("auth", email, { expires: 7 });
+            navigate("/home");
+          }
         } else {
           navigate("/login");
         }
