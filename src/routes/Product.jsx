@@ -1,31 +1,74 @@
-import { useState } from "react";
-import Avatar from "@mui/material/Avatar";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { Avatar, Backdrop } from "@mui/material";
+import axios from "axios";
+import { NumericFormat } from "react-number-format";
 import Navbar from "../components/Navbar";
-import { AcUnit, AddCircle, Star, SubtractCircle, Wifi } from "../components/Icons";
+import { AddCircle, Star, SubtractCircle } from "../components/Icons";
 import "../styles/Product.css";
 import ReviewItem from "../components/product/ReviewItem";
 import Footer from "../components/Footer";
+import Facilities from "../components/product/Facilities";
 
 export default function Product() {
+  const { rid } = useParams();
+  const [imageOpen, setImageOpen] = useState([false, ""]);
   const [guestNumber, setGuestNumber] = useState(1);
+  const [room, setRoom] = useState(null);
+  const [owner, setOwner] = useState(null);
+
+  useEffect(() => {
+    async function getRoomInfo() {
+      try {
+        const res = await axios.get(`http://localhost:8080/api/rooms/getroombyid=${rid}`);
+        if (res.data.roomOwner) {
+          setRoom(res.data);
+          const ownerDataRes = await axios.get(`http://localhost:8080/api/owners/getownerbyid=${res.data.roomOwner}`);
+          setOwner(ownerDataRes.data);
+        }
+      } catch (err) {
+        console.error(err);
+      }
+    }
+    getRoomInfo();
+  }, [rid]);
 
   return (
     <main>
       <Navbar />
       <section className="product-nav-section">
-        <div className="hero-bg search-hero-bg"></div>
+        <div id="heroBG" className="hero-bg search-hero-bg"></div>
       </section>
       <section className="product-hero-section">
-        <h1>Rustic single room (only) in urban forest bungalow</h1>
+        <h1>{room?.roomName}</h1>
         <div className="product-hero-img">
-          <div className="product-main-img" style={{ backgroundImage: "url('https://a0.muscache.com/im/pictures/7fa55ecc-3c87-4347-a0d0-6c8485a0b632.jpg?im_w=1200')" }}></div>
+          <div
+            onClick={() => setImageOpen([true, "https://a0.muscache.com/im/pictures/7fa55ecc-3c87-4347-a0d0-6c8485a0b632.jpg?im_w=1200"])}
+            className="product-main-img"
+            style={{ backgroundImage: "url('https://a0.muscache.com/im/pictures/7fa55ecc-3c87-4347-a0d0-6c8485a0b632.jpg?im_w=1200')" }}
+          ></div>
+          <Backdrop className="product-backdrop" sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }} open={imageOpen[0]} onClick={() => setImageOpen((prev) => prev.with(0, false))}>
+            <img className="product-zoomed-img" src={imageOpen[1]} alt="room" />
+          </Backdrop>
           <div className="product-other-img">
-            <div style={{ backgroundImage: "url('https://a0.muscache.com/im/pictures/7fa55ecc-3c87-4347-a0d0-6c8485a0b632.jpg?im_w=1200')" }}></div>
-            <div style={{ backgroundImage: "url('https://a0.muscache.com/im/pictures/7fa55ecc-3c87-4347-a0d0-6c8485a0b632.jpg?im_w=1200')" }}></div>
+            <div
+              onClick={() => setImageOpen([true, "https://a0.muscache.com/im/pictures/7fa55ecc-3c87-4347-a0d0-6c8485a0b632.jpg?im_w=1200"])}
+              style={{ backgroundImage: "url('https://a0.muscache.com/im/pictures/7fa55ecc-3c87-4347-a0d0-6c8485a0b632.jpg?im_w=1200')" }}
+            ></div>
+            <div
+              onClick={() => setImageOpen([true, "https://a0.muscache.com/im/pictures/7fa55ecc-3c87-4347-a0d0-6c8485a0b632.jpg?im_w=1200"])}
+              style={{ backgroundImage: "url('https://a0.muscache.com/im/pictures/7fa55ecc-3c87-4347-a0d0-6c8485a0b632.jpg?im_w=1200')" }}
+            ></div>
           </div>
           <div className="product-other-img">
-            <div style={{ backgroundImage: "url('https://a0.muscache.com/im/pictures/7fa55ecc-3c87-4347-a0d0-6c8485a0b632.jpg?im_w=1200')" }}></div>
-            <div style={{ backgroundImage: "url('https://a0.muscache.com/im/pictures/7fa55ecc-3c87-4347-a0d0-6c8485a0b632.jpg?im_w=1200')" }}></div>
+            <div
+              onClick={() => setImageOpen([true, "https://a0.muscache.com/im/pictures/7fa55ecc-3c87-4347-a0d0-6c8485a0b632.jpg?im_w=1200"])}
+              style={{ backgroundImage: "url('https://a0.muscache.com/im/pictures/7fa55ecc-3c87-4347-a0d0-6c8485a0b632.jpg?im_w=1200')" }}
+            ></div>
+            <div
+              onClick={() => setImageOpen([true, "https://a0.muscache.com/im/pictures/7fa55ecc-3c87-4347-a0d0-6c8485a0b632.jpg?im_w=1200"])}
+              style={{ backgroundImage: "url('https://a0.muscache.com/im/pictures/7fa55ecc-3c87-4347-a0d0-6c8485a0b632.jpg?im_w=1200')" }}
+            ></div>
           </div>
         </div>
       </section>
@@ -33,71 +76,49 @@ export default function Product() {
         <section className="product-details-container">
           <div className="product-heading">
             <div>
-              <h2>Room in Mumbai, India</h2>
-              <p>1 single bed. Private attached bathroom</p>
+              <h2>Room in {room?.roomAddress}</h2>
+              <p>
+                {room?.roomRooms} Bedroom{room?.roomRooms > 1 && "s"}. {room?.roomBathroom} Bathroom{room?.roomBathroom > 1 && "s"}.
+              </p>
             </div>
             <div className="product-heading-rating">
               <Star />
-              <p>4.9</p>
+              <p>
+                <NumericFormat displayType="text" value={room?.roomRating} decimalScale={1} fixedDecimalScale />
+              </p>
             </div>
           </div>
           <div className="product-owner-details">
-            <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
+            <Avatar alt={owner?.ownerName} src="/static/images/avatar/1.jpg" />
             <div>
-              <h3>Remy Sharp</h3>
-              <p>4.96 Rating</p>
+              <h3>{owner?.ownerName}</h3>
+              <p>
+                <NumericFormat displayType="text" value={owner?.ownerRating} decimalScale={2} fixedDecimalScale /> Rating
+              </p>
             </div>
           </div>
-          <div className="product-feature">
-            <h3>What this place offers</h3>
-            <div>
-              <div>
-                <AcUnit />
-                <p>AC unit</p>
-              </div>
-              <div>
-                <Wifi />
-                <p>Wifi enabled</p>
-              </div>
-              <div>
-                <AcUnit />
-                <p>AC unit</p>
-              </div>
-              <div>
-                <Wifi />
-                <p>Wifi enabled</p>
-              </div>
-              <div>
-                <AcUnit />
-                <p>AC unit</p>
-              </div>
-              <div>
-                <Wifi />
-                <p>Wifi enabled</p>
-              </div>
-            </div>
-          </div>
+          <Facilities rid={rid} />
           <div className="product-about">
             <h3>About this place</h3>
             <p>
+              {room?.roomDescription}
               Cozy room, fully stocked in a bungalow with garden view. Ideal ONLY for single travelers seeking safe and comfortable short/long-term stay. Green view, well designed, warm yet bright
-              space, includes attached bath, basic pantry, clean linen, A/C, high-speed WiFi. Key to your room & the main door provided for convenience. All essentials in close proximity. You have it
-              all in this cute little place. Parties/Decorations/Shoots not allowed. Advanced notice required for extra visitors/vehicle parking.
+              space, includes attached bath, basic pantry, clean linen, A/C, high-speed WiFi. Key to your room & the main door provided for convenience.
             </p>
           </div>
         </section>
         <section className="product-reserve-container">
           <div className="reserve">
             <h3>
-              ₹8,000 <span>monthly</span>
+              ₹<NumericFormat className="reserve-cost" displayType="text" value={room?.roomPrice} thousandsGroupStyle="lakh" thousandSeparator="," /> <span>monthly</span>
             </h3>
             <div>
               <p>
                 {guestNumber} Guest{guestNumber > 1 && "s"}
               </p>
               <div>
-                <SubtractCircle onClick={() => setGuestNumber((prev) => prev - 1)} />
-                <AddCircle onClick={() => setGuestNumber((prev) => prev + 1)} />
+                <SubtractCircle onClick={() => setGuestNumber((prev) => (prev > 1 ? prev - 1 : prev))} />
+                <AddCircle onClick={() => setGuestNumber((prev) => (prev < room?.roomGuests ? prev + 1 : prev))} />
               </div>
             </div>
             <button className="btn">Reserve</button>
@@ -106,12 +127,7 @@ export default function Product() {
       </section>
       <section className="product-review-section">
         <h1>Guest reviews</h1>
-        <div>
-          <ReviewItem />
-          <ReviewItem />
-          <ReviewItem />
-          <ReviewItem />
-        </div>
+        <ReviewItem rid={rid} />
       </section>
       <Footer />
     </main>

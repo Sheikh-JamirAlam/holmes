@@ -1,30 +1,21 @@
-import { useEffect, useState } from "react";
+import "../styles/Admin.css";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 import axios from "axios";
-import Cookies from "js-cookie";
 import { CrossInCircle, PhEye, PhEyeClosed } from "../components/Icons";
-import "../styles/Login.css";
-
-export default function Login() {
+export default function AdminLogin() {
   const navigate = useNavigate();
   const [isPassHidden, setIsPassHidden] = useState(true);
-  const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
   const [pass, setPass] = useState("");
-
-  useEffect(() => {
-    if (Cookies.get("auth")) {
-      navigate("/");
-    }
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   async function handleLogin(e) {
     try {
-      const res = await axios.post("http://localhost:8080/api/user/login", {
-        userEmail: email,
-        userPass: pass,
+      const getRes = await axios.post("http://localhost:8080/api/admin/login", {
+        adminName: name,
+        adminPass: pass,
       });
-      if (res.data === "Login successful") {
-        Cookies.set("auth", email, { expires: 7 });
+      if (getRes.data === "Login successful") {
         navigate("/");
       } else {
         navigate("/login");
@@ -36,15 +27,14 @@ export default function Login() {
 
   return (
     <section>
-      <div className="login-container">
+      <div className="admin-container">
         <a className="close-cross" href="/">
           <CrossInCircle />
         </a>
-        <h1 className="heading">Login</h1>
-        <p>Enter your details to sign in to your account</p>
+        <h1 className="heading">Admin Login</h1>
         <div className="input-container">
           <div className="input">
-            <input type="email" placeholder="Enter email address" value={email} onChange={(e) => setEmail(e.target.value)} />
+            <input type="text" placeholder="Enter username" value={name} onChange={(e) => setName(e.target.value)} />
           </div>
           <div className="input">
             <input type={isPassHidden ? "password" : "text"} placeholder="Enter password" value={pass} onChange={(e) => setPass(e.target.value)} />
@@ -54,9 +44,6 @@ export default function Login() {
             Sign in
           </button>
         </div>
-        <p className="signup">
-          Don't have an account? <a href="/signup">Sign up for free</a>
-        </p>
       </div>
     </section>
   );

@@ -18,6 +18,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  box-sizing: border-box;
 }
 
 .navbar {
@@ -30,6 +31,17 @@ body {
   &>div {
     z-index: 1;
   }
+
+  &>.logo {
+    display: flex;
+    gap: 0.5rem;
+    cursor: pointer;
+
+    &>img {
+      width: 2.5rem;
+      height: 2.5rem;
+    }
+  }
 }
 
 .nav-btns {
@@ -41,6 +53,11 @@ body {
     color: var(--primary-white);
     text-decoration: none;
   }
+}
+
+.nav-menu-icons {
+  font-size: 20px;
+  margin-right: 0.5rem;
 }
 
 .account-btns {

@@ -11,8 +11,6 @@ import AboutUs from "./routes/AboutUs";
 import Profile from "./routes/Profile";
 import Product from "./routes/Product";
 import Payment from "./routes/Payment";
-import Review from "./routes/Review";
-import Admin from "./routes/Admin";
 
 const router = createBrowserRouter([
   {
@@ -36,7 +34,7 @@ const router = createBrowserRouter([
     element: <Search />,
   },
   {
-    path: "/rooms",
+    path: "/rooms/:rid",
     element: <Product />,
   },
   {
@@ -51,19 +49,11 @@ const router = createBrowserRouter([
     path: "/payment",
     element: <Payment />,
   },
-  {
-    path: "/review",
-    element: <Review />,
-  },
-  {
-    path: "/admin",
-    element: <Admin />,
-  },
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <React.StrictMode>
-    <RouterProvider router={router} />
-  </React.StrictMode>
+  // <React.StrictMode>
+  <RouterProvider router={router} />
+  // </React.StrictMode>
 );

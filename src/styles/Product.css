@@ -44,7 +44,7 @@
       gap: 0.5rem;
       flex-direction: column;
 
-      &:nth-child(3)>div {
+      &:nth-child(4)>div {
         &:nth-child(1) {
           border-radius: 0 15px 0 0;
         }
@@ -54,7 +54,7 @@
         }
       }
 
-      &>div {
+      &>div:not(.product-backdrop) {
         height: 15rem;
         background-repeat: no-repeat;
         background-position: center;
@@ -70,6 +70,11 @@
       }
     }
   }
+}
+
+.product-zoomed-img {
+  height: 50rem;
+  border: 5px solid var(--primary-white);
 }
 
 .product-details-section {
@@ -185,6 +190,11 @@
       &>h3 {
         font-size: 20px;
         font-weight: 600;
+
+        &>.reserve-cost {
+          font-size: 20px;
+          font-weight: 600;
+        }
 
         &>span {
           font-size: 16px;

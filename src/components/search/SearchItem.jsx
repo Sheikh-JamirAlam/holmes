@@ -1,14 +1,22 @@
-import { Bed, House, RoomSize } from "../Icons";
+import { useNavigate } from "react-router-dom";
+import { NumericFormat } from "react-number-format";
+import { Bed, House, Profile } from "../Icons";
 
 export default function SearchItem(props) {
+  const navigate = useNavigate();
+
   return (
-    <div className="search-item-container">
+    <div className="search-item-container" onClick={() => navigate(`/rooms/${props.rid}`)}>
       <div className="search-item-img"></div>
       <div className="search-item-details">
-        <h1>{props.price}</h1>
+        <h1>
+          ₹<NumericFormat className="reserve-cost" displayType="text" value={props.price} thousandsGroupStyle="lakh" thousandSeparator="," />
+        </h1>
         <div>
           <p>{props.location}</p>
-          <span>{props.rating}</span>
+          <span>
+            <NumericFormat displayType="text" value={props.rating} decimalScale={1} fixedDecimalScale />
+          </span>
         </div>
         <div className="divider"></div>
         <div className="search-item-features">
@@ -19,10 +27,7 @@ export default function SearchItem(props) {
             <Bed /> {props.bedroom}
           </div>
           <div>
-            <RoomSize />{" "}
-            <p>
-              98 m<sup>2</sup>
-            </p>
+            <Profile /> {props.guests}
           </div>
         </div>
       </div>

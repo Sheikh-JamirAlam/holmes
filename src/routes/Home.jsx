@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from "react";
+import axios from "axios";
 import Navbar from "../components/Navbar";
 import OfferItem from "../components/home/OfferItem";
 import PopularItem from "../components/home/PopularItem";
@@ -18,17 +19,29 @@ export default function Home() {
 
   useEffect(() => {
     document.addEventListener("click", (e) => {
-      if (!locationRef.current[0].contains(e.target)) {
+      if (!locationRef.current[0]?.contains(e.target)) {
         setIsLocationOptionsOpen(false);
       }
-      if (!locationRef.current[1].contains(e.target)) {
+      if (!locationRef.current[1]?.contains(e.target)) {
         setIsTypeOptionsOpen(false);
       }
-      if (!locationRef.current[2].contains(e.target)) {
+      if (!locationRef.current[2]?.contains(e.target)) {
         setIsPriceOptionsOpen(false);
       }
     });
   });
+
+  useEffect(() => {
+    async function getApi() {
+      const res = await axios.get("https://api.countrystatecity.in/v1/countries/IN/cities", {
+        headers: {
+          "X-CSCAPI-KEY": process.env.REACT_APP_API_KEY,
+        },
+      });
+      console.log(res.data);
+    }
+    getApi();
+  }, []);
 
   return (
     <main>
@@ -36,7 +49,7 @@ export default function Home() {
       <Navbar />
       {/* Hero section */}
       <section className="hero-container">
-        <div className="hero-bg"></div>
+        <div id="heroBG" className="hero-bg"></div>
         <h1 className="hero-text">Let's Get Your PG</h1>
         <div className="hero-search-container">
           <div className="hero-search-filter">
@@ -73,7 +86,13 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <button className="btn">Search</button>
+          <a
+            href={`/search?location=${locationText.substring(0, locationText.indexOf(","))}&type=${typeText === "" ? "Flat, Paying Guest" : typeText}&price=${priceText
+              .replace(/,/g, "")
+              .match(/[0-9]*[0-9]/g)}`}
+          >
+            <button className="btn">Search</button>
+          </a>
         </div>
       </section>
       {/* Popular Section */}
@@ -83,10 +102,10 @@ export default function Home() {
           <p>Checkouts ours best PG&apos;s and find your best room that suits you.</p>
         </div>
         <div className="popular-items">
-          <PopularItem background="./images/popular-1.png" />
-          <PopularItem background="./images/popular-2.png" />
-          <PopularItem background="./images/popular-3.png" />
-          <PopularItem background="./images/popular-4.png" />
+          <PopularItem background="./images/Home/popular-1.png" />
+          <PopularItem background="./images/Home/popular-2.png" />
+          <PopularItem background="./images/Home/popular-3.png" />
+          <PopularItem background="./images/Home/popular-4.png" />
         </div>
       </section>
       {/* Offers Section */}
@@ -96,9 +115,9 @@ export default function Home() {
           <p>Get best offers</p>
         </div>
         <div className="offers-items">
-          <OfferItem background="./images/offer-1.png" />
-          <OfferItem background="./images/offer-2.png" />
-          <OfferItem background="./images/offer-3.png" />
+          <OfferItem background="./images/Home/offer-1.png" />
+          <OfferItem background="./images/Home/offer-2.png" />
+          <OfferItem background="./images/Home/offer-3.png" />
         </div>
       </section>
       {/* Video Section */}
@@ -117,9 +136,9 @@ export default function Home() {
         <h1>We Provides Latest Properties For Our Valuable Clients</h1>
         <div>
           <div>
-            <img style={{ transform: "translate(20rem,0)" }} src="/images/feature-1.png" alt="" />
-            <img style={{ transform: "translate(21rem,13rem)" }} src="/images/feature-3.png" alt="" />
-            <img style={{ transform: "translate(10rem,5rem)", width: "18rem" }} src="/images/feature-2.png" alt="" />
+            <img style={{ transform: "translate(20rem,0)" }} src="/images/Home/feature-1.png" alt="" />
+            <img style={{ transform: "translate(21rem,13rem)" }} src="/images/Home/feature-3.png" alt="" />
+            <img style={{ transform: "translate(10rem,5rem)", width: "18rem" }} src="/images/Home/feature-2.png" alt="" />
           </div>
           <div className="feature-text">
             <div>
