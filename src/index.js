@@ -11,7 +11,6 @@ import AboutUs from "./routes/AboutUs";
 import Profile from "./routes/Profile";
 import Product from "./routes/Product";
 import Payment from "./routes/Payment";
-import AdminLogin from "./routes/AdminLogin";
 
 const router = createBrowserRouter([
   {
@@ -49,10 +48,6 @@ const router = createBrowserRouter([
   {
     path: "/payment",
     element: <Payment />,
-  },
-  {
-    path: "/admin-login",
-    element: <AdminLogin />,
   },
 ]);
 
