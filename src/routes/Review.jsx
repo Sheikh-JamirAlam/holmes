@@ -65,7 +65,7 @@ export default function Review() {
           type="text"
           className="what"
           name="headline"
-          placeholder="What's most importatnt to know"
+          placeholder="What's most important to know"
         />
       </label>
       <h3 className="write">Write your review</h3>
