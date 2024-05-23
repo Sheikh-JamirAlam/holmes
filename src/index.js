@@ -11,6 +11,8 @@ import AboutUs from "./routes/AboutUs";
 import Profile from "./routes/Profile";
 import Product from "./routes/Product";
 import Payment from "./routes/Payment";
+import AdminLogin from "./routes/AdminLogin";
+import Review from "./routes/Review";
 
 const router = createBrowserRouter([
   {
@@ -44,6 +46,14 @@ const router = createBrowserRouter([
   {
     path: "/profile",
     element: <Profile />,
+  },
+  {
+    path: "/review",
+    element: <Review />,
+  },
+  {
+    path: "/admin-login",
+    element: <AdminLogin />,
   },
   {
     path: "/payment",
