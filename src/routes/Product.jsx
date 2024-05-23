@@ -127,12 +127,7 @@ export default function Product() {
       </section>
       <section className="product-review-section">
         <h1>Guest reviews</h1>
-        <div>
-          <ReviewItem />
-          <ReviewItem />
-          <ReviewItem />
-          <ReviewItem />
-        </div>
+        <ReviewItem rid={rid} />
       </section>
       <Footer />
     </main>

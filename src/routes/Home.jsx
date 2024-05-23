@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from "react";
+import axios from "axios";
 import Navbar from "../components/Navbar";
 import OfferItem from "../components/home/OfferItem";
 import PopularItem from "../components/home/PopularItem";
@@ -29,6 +30,18 @@ export default function Home() {
       }
     });
   });
+
+  useEffect(() => {
+    async function getApi() {
+      const res = await axios.get("https://api.countrystatecity.in/v1/countries/IN/cities", {
+        headers: {
+          "X-CSCAPI-KEY": process.env.REACT_APP_API_KEY,
+        },
+      });
+      console.log(res.data);
+    }
+    getApi();
+  }, []);
 
   return (
     <main>
@@ -73,7 +86,13 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <button className="btn">Search</button>
+          <a
+            href={`/search?location=${locationText.substring(0, locationText.indexOf(","))}&type=${typeText === "" ? "Flat, Paying Guest" : typeText}&price=${priceText
+              .replace(/,/g, "")
+              .match(/[0-9]*[0-9]/g)}`}
+          >
+            <button className="btn">Search</button>
+          </a>
         </div>
       </section>
       {/* Popular Section */}

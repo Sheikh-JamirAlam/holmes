@@ -46,7 +46,7 @@ export default function Navbar() {
         <div className="account-btns" style={{ gap: "0.5rem" }}>
           <p>Jamir Alam</p>
           <IconButton onClick={handleClick} size="small">
-            <Avatar sx={{ width: 32, height: 32 }}>M</Avatar>
+            <Avatar sx={{ width: 32, height: 32 }} alt="Jamir Alam" src="/static/images/avatar/1.jpg" />
           </IconButton>
           <Menu
             anchorEl={anchorEl}

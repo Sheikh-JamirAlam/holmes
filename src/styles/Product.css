@@ -44,7 +44,7 @@
       gap: 0.5rem;
       flex-direction: column;
 
-      &:nth-child(3)>div {
+      &:nth-child(4)>div {
         &:nth-child(1) {
           border-radius: 0 15px 0 0;
         }

@@ -89,7 +89,7 @@ main {
   align-items: center;
   z-index: 1;
 
-  &>.btn {
+  &>a {
     margin-top: auto;
     font-size: 14px;
   }
