@@ -1,40 +1,8 @@
-import Razorpay from "razorpay";
 import "../styles/Payment.css";
 
 export default function Payment() {
-  function handleCheckout(e) {
-    e.preventDefault();
-    const rzp_options = {
-      key: "rzp_test_nqj132lgUblXYx",
-      amount: this.product.price * 100,
-      name: "The Bollywood Store",
-      description: this.product.title,
-      handler: function (response) {
-        alert(`Payment Succesful ${response.razorpay_payment_id}`);
-      },
-      modal: {
-        ondismiss: function () {
-          alert(`Payment Failed`);
-        },
-      },
-      prefill: {
-        email: "test@email.com",
-        contact: +914455667788,
-      },
-      notes: {
-        name: "Customer Name",
-        // item: self.product.title,
-      },
-      theme: {
-        color: "#667eea",
-      },
-    };
-    const rzp1 = new Razorpay(rzp_options);
-    rzp1.open();
-  }
-
   return (
-    <div className="page">
+    <div class="page">
       <div
         className="background"
         style={{
@@ -43,7 +11,7 @@ export default function Payment() {
       ></div>
       <div className="div-container">
         <div className="container">
-          <form>
+          <form action="">
             <div className="row">
               <div className="col">
                 <h3 className="title">billing address</h3>
@@ -74,7 +42,7 @@ export default function Payment() {
                 </div>
 
                 <div className="flex">
-                  <div className="inputBox">
+                  <div class="inputBox">
                     <span>state :</span>
                     <input className="input" type="text" placeholder="India" />
                   </div>
@@ -89,32 +57,32 @@ export default function Payment() {
                 </div>
               </div>
 
-              <div className="col">
-                <h3 className="title">payment</h3>
+              <div class="col">
+                <h3 class="title">payment</h3>
 
-                <div className="inputBox">
+                <div class="inputBox">
                   <span>cards accepted :</span>
                   <img src="./images/card.png" alt="" />
                 </div>
-                <div className="inputBox">
+                <div class="inputBox">
                   <span>name on card :</span>
                   <input type="text" placeholder="mr. john deo" />
                 </div>
-                <div className="inputBox">
+                <div class="inputBox">
                   <span>credit card number :</span>
                   <input type="number" placeholder="1111-2222-3333-4444" />
                 </div>
-                <div className="inputBox">
+                <div class="inputBox">
                   <span>exp month :</span>
                   <input type="text" placeholder="january" />
                 </div>
 
-                <div className="flex">
-                  <div className="inputBox">
+                <div class="flex">
+                  <div class="inputBox">
                     <span>exp year :</span>
                     <input type="number" placeholder="2022" />
                   </div>
-                  <div className="inputBox">
+                  <div class="inputBox">
                     <span>CVV :</span>
                     <input type="text" placeholder="1234" />
                   </div>
@@ -122,9 +90,11 @@ export default function Payment() {
               </div>
             </div>
 
-            <button onSubmit={handleCheckout} className="submit-btn">
-              Proceed to checkout
-            </button>
+            <input
+              type="submit"
+              value="proceed to checkout"
+              class="submit-btn"
+            />
           </form>
         </div>
       </div>
