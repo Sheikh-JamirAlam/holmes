@@ -149,7 +149,7 @@ export const Locations = [
   },
   {
     id: 38,
-    name: "Delhi",
+    name: "Dehli",
   },
   {
     id: 39,
