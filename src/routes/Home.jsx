@@ -1,5 +1,4 @@
 import { useState, useRef, useEffect } from "react";
-import axios from "axios";
 import Navbar from "../components/Navbar";
 import OfferItem from "../components/home/OfferItem";
 import PopularItem from "../components/home/PopularItem";
@@ -30,18 +29,6 @@ export default function Home() {
       }
     });
   });
-
-  useEffect(() => {
-    async function getApi() {
-      const res = await axios.get("https://api.countrystatecity.in/v1/countries/IN/cities", {
-        headers: {
-          "X-CSCAPI-KEY": process.env.REACT_APP_API_KEY,
-        },
-      });
-      console.log(res.data);
-    }
-    getApi();
-  }, []);
 
   return (
     <main>

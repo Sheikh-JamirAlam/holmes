@@ -4,7 +4,6 @@ import axios from "axios";
 import Slider from "@mui/material/Slider";
 import Checkbox from "@mui/material/Checkbox";
 import FormControlLabel from "@mui/material/FormControlLabel";
-import Pagination from "@mui/material/Pagination";
 import { NumericFormat } from "react-number-format";
 import Navbar from "../components/Navbar";
 import SearchItem from "../components/search/SearchItem";
@@ -16,7 +15,10 @@ import "../styles/Search.css";
 export default function Search() {
   const [searchParams, setSearchParams] = useSearchParams();
   const [searchLocation, setSearchLocation] = useState(searchParams.get("location"));
-  const [price, setPrice] = useState([15000, 25000]);
+  const [price, setPrice] = useState([
+    parseInt(searchParams.get("price").substring(0, searchParams.get("price").indexOf(","))),
+    parseInt(searchParams.get("price").substring(searchParams.get("price").indexOf(",") + 1)),
+  ]);
   const [isSortOpen, setIsSortOpen] = useState(false);
   const [sortText, setSortText] = useState("Our top picks");
   const [roomSearchResult, setRoomSearchResult] = useState(null);
@@ -35,34 +37,61 @@ export default function Search() {
     }
   };
 
-  const handlePropertyTypeChange = (event) => {
+  const handlePropertyPriceChange = () => {
+    const newParams = new URLSearchParams(searchParams.toString());
+    newParams.set("price", `${price[0]},${price[1]}`);
+    setSearchParams(newParams);
+  };
+
+  const handlePropertyTypeChange = () => {
+    const newParams = new URLSearchParams(searchParams.toString());
     const isFlatChecked = document.querySelectorAll(".property-type-checkbox>input")[0].checked;
     const isPGChecked = document.querySelectorAll(".property-type-checkbox>input")[1].checked;
     if (isFlatChecked && isPGChecked) {
-      setSearchParams({
-        location: searchParams.get("location"),
-        type: "Flat, Paying Guest",
-        price: searchParams.get("price"),
-      });
+      newParams.set("type", "Flat, Paying Guest");
     } else if (isFlatChecked && !isPGChecked) {
-      setSearchParams({
-        location: searchParams.get("location"),
-        type: "Flat",
-        price: searchParams.get("price"),
-      });
+      newParams.set("type", "Flat");
     } else if (!isFlatChecked && isPGChecked) {
-      setSearchParams({
-        location: searchParams.get("location"),
-        type: "Paying Guest",
-        price: searchParams.get("price"),
-      });
+      newParams.set("type", "Paying Guest");
     } else {
-      setSearchParams({
-        location: searchParams.get("location"),
-        type: "",
-        price: searchParams.get("price"),
-      });
+      newParams.set("type", "");
     }
+    setSearchParams(newParams);
+  };
+
+  const handlePropertyRoomChange = () => {
+    const newParams = new URLSearchParams(searchParams.toString());
+    const isOneChecked = document.querySelectorAll(".property-rooms-checkbox>input")[0].checked;
+    const isTwoChecked = document.querySelectorAll(".property-rooms-checkbox>input")[1].checked;
+    const isMoreChecked = document.querySelectorAll(".property-rooms-checkbox>input")[2].checked;
+    if (!isOneChecked && !isTwoChecked && !isMoreChecked) {
+      newParams.delete("rooms");
+    } else {
+      if (searchParams.get("rooms") === null) newParams.append("rooms", `${isOneChecked ? "1" : ""}${isTwoChecked ? "2" : ""}${isMoreChecked ? "More" : ""}`);
+      else newParams.set("rooms", `${isOneChecked ? "1" : ""}${isTwoChecked ? "2" : ""}${isMoreChecked ? "More" : ""}`);
+    }
+    setSearchParams(newParams);
+  };
+
+  const handlePropertyBathroomChange = () => {
+    const newParams = new URLSearchParams(searchParams.toString());
+    const isOneChecked = document.querySelectorAll(".property-bathroom-checkbox>input")[0].checked;
+    const isTwoChecked = document.querySelectorAll(".property-bathroom-checkbox>input")[1].checked;
+    const isMoreChecked = document.querySelectorAll(".property-bathroom-checkbox>input")[2].checked;
+    if (!isOneChecked && !isTwoChecked && !isMoreChecked) {
+      newParams.delete("bathroom");
+    } else {
+      if (searchParams.get("bathroom") === null) newParams.append("bathroom", `${isOneChecked ? "1" : ""}${isTwoChecked ? "2" : ""}${isMoreChecked ? "More" : ""}`);
+      else newParams.set("bathroom", `${isOneChecked ? "1" : ""}${isTwoChecked ? "2" : ""}${isMoreChecked ? "More" : ""}`);
+    }
+    setSearchParams(newParams);
+  };
+
+  const handlePropertyFilterChange = (e) => {
+    const newParams = new URLSearchParams(searchParams.toString());
+    if (searchParams.get(e.target.id) === "true") newParams.delete(e.target.id);
+    else if (searchParams.get(e.target.id) === null) newParams.append(e.target.id, true);
+    setSearchParams(newParams);
   };
 
   useEffect(() => {
@@ -77,10 +106,18 @@ export default function Search() {
     async function searchRooms() {
       try {
         setIsLoading(true);
-        const res = await axios.get(`http://localhost:8080/api/search?location=${searchParams.get("location")}&type=${searchParams.get("type")}&price=${searchParams.get("price")}`);
+        const res = await axios.get(
+          `http://localhost:8080/api/search?location=${searchParams.get("location")}&type=${searchParams.get("type")}&price=${searchParams.get("price")}${
+            searchParams.get("rooms") ? "&rooms=" + searchParams.get("rooms") : ""
+          }${searchParams.get("bathroom") ? "&bathroom=" + searchParams.get("bathroom") : ""}${searchParams.get("kitchen") ? "&kitchen=true" : ""}${searchParams.get("ac") ? "&ac=true" : ""}${
+            searchParams.get("pvtbath") ? "&pvtbath=true" : ""
+          }${searchParams.get("wifi") ? "&wifi=true" : ""}${searchParams.get("furnished") ? "&furnished=true" : ""}${searchParams.get("geyser") ? "&geyser=true" : ""}${
+            searchParams.get("fridge") ? "&fridge=true" : ""
+          }${searchParams.get("parking") ? "&parking=true" : ""}
+          `
+        );
         setIsLoading(false);
         setRoomSearchResult(res.data);
-        console.log(res.data);
       } catch (err) {
         console.error(err);
       }
@@ -108,7 +145,6 @@ export default function Search() {
         <section className="search-filter-container">
           <div className="search-filter-heading">
             <h3>Filters</h3>
-            <p>Reset filters</p>
           </div>
           <div>
             <h2>Property type</h2>
@@ -143,26 +179,36 @@ export default function Search() {
                 ₹ <NumericFormat displayType="text" value={price[1]} thousandsGroupStyle="lakh" thousandSeparator="," />
               </p>
             </div>
-            <Slider value={price} onChange={handleChange} step={100} min={5000} max={50000} valueLabelDisplay="auto" disableSwap />
+            <Slider value={price} onChange={handleChange} step={100} min={1000} max={25000} valueLabelDisplay="auto" disableSwap />
+            <button className="btn" onClick={handlePropertyPriceChange}>
+              Apply
+            </button>
           </div>
           <div>
             <h2>Rooms</h2>
-            <FormControlLabel control={<Checkbox defaultChecked />} label="1 rooms" />
-            <FormControlLabel control={<Checkbox />} label="2 rooms" />
-            <FormControlLabel control={<Checkbox />} label="3 rooms" />
-            <FormControlLabel control={<Checkbox />} label="More" />
+            <FormControlLabel control={<Checkbox className="property-rooms-checkbox" checked={searchParams.get("rooms")?.includes("1")} onChange={handlePropertyRoomChange} />} label="1 rooms" />
+            <FormControlLabel control={<Checkbox className="property-rooms-checkbox" checked={searchParams.get("rooms")?.includes("2")} onChange={handlePropertyRoomChange} />} label="2 rooms" />
+            <FormControlLabel control={<Checkbox className="property-rooms-checkbox" checked={searchParams.get("rooms")?.includes("More")} onChange={handlePropertyRoomChange} />} label="More" />
           </div>
           <div>
             <h2>Bathrooms</h2>
-            <FormControlLabel control={<Checkbox defaultChecked />} label="1" />
-            <FormControlLabel control={<Checkbox />} label="2" />
-            <FormControlLabel control={<Checkbox />} label="More" />
+            <FormControlLabel control={<Checkbox className="property-bathroom-checkbox" checked={searchParams.get("bathroom")?.includes("1")} onChange={handlePropertyBathroomChange} />} label="1" />
+            <FormControlLabel control={<Checkbox className="property-bathroom-checkbox" checked={searchParams.get("bathroom")?.includes("2")} onChange={handlePropertyBathroomChange} />} label="2" />
+            <FormControlLabel
+              control={<Checkbox className="property-bathroom-checkbox" checked={searchParams.get("bathroom")?.includes("More")} onChange={handlePropertyBathroomChange} />}
+              label="More"
+            />
           </div>
           <div>
             <h2>Others</h2>
-            <FormControlLabel control={<Checkbox />} label="Pets allowed" />
-            <FormControlLabel control={<Checkbox />} label="Furnished" />
-            <FormControlLabel control={<Checkbox />} label="Meal Facilities" />
+            <FormControlLabel control={<Checkbox id="ac" checked={searchParams.get("ac")} onChange={handlePropertyFilterChange} />} label="Air Conditioning" />
+            <FormControlLabel control={<Checkbox id="pvtbath" checked={searchParams.get("pvtbath")} onChange={handlePropertyFilterChange} />} label="Private Bathroom" />
+            <FormControlLabel control={<Checkbox id="wifi" checked={searchParams.get("wifi")} onChange={handlePropertyFilterChange} />} label="Wifi Available" />
+            <FormControlLabel control={<Checkbox id="furnished" checked={searchParams.get("furnished")} onChange={handlePropertyFilterChange} />} label="Furnished" />
+            <FormControlLabel control={<Checkbox id="kitchen" checked={searchParams.get("kitchen")} onChange={handlePropertyFilterChange} />} label="Kitchen" />
+            <FormControlLabel control={<Checkbox id="geyser" checked={searchParams.get("geyser")} onChange={handlePropertyFilterChange} />} label="Geyser Installed" />
+            <FormControlLabel control={<Checkbox id="fridge" checked={searchParams.get("fridge")} onChange={handlePropertyFilterChange} />} label="Fridge Available" />
+            <FormControlLabel control={<Checkbox id="parking" checked={searchParams.get("parking")} onChange={handlePropertyFilterChange} />} label="Parking Enabled" />
           </div>
         </section>
         <section className="search-result-container">
@@ -203,9 +249,6 @@ export default function Search() {
           ) : (
             <h1 className="no-properties">No properties found</h1>
           )}
-          <div>
-            <Pagination count={10} color="primary" />
-          </div>
         </section>
       </section>
       <Footer />

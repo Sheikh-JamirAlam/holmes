@@ -3,7 +3,7 @@ import Slider from "@mui/material/Slider";
 import { NumericFormat } from "react-number-format";
 
 export default function SearchOptionPrice(props) {
-  const [price, setPrice] = useState([15000, 25000]);
+  const [price, setPrice] = useState([8000, 12000]);
 
   const minDistance = 100;
   const handleChange = (event, newValue, activeThumb) => {
@@ -30,7 +30,7 @@ export default function SearchOptionPrice(props) {
       <p id="max-price-option">
         ₹ <NumericFormat displayType="text" value={price[1]} thousandsGroupStyle="lakh" thousandSeparator="," />
       </p>
-      <Slider value={price} onChange={handleChange} step={100} min={5000} max={50000} valueLabelDisplay="auto" disableSwap />
+      <Slider value={price} onChange={handleChange} step={100} min={1000} max={25000} valueLabelDisplay="auto" disableSwap />
       <button className="btn" onClick={() => props.setIsPriceOptionsOpen(false)}>
         Done
       </button>
