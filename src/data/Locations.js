@@ -113,7 +113,7 @@ export const Locations = [
   },
   {
     id: 29,
-    name: "Kolakata",
+    name: "Kolkata",
   },
   {
     id: 30,
@@ -133,7 +133,7 @@ export const Locations = [
   },
   {
     id: 34,
-    name: "Bengaluru",
+    name: "Bangalore",
   },
   {
     id: 35,
@@ -149,14 +149,14 @@ export const Locations = [
   },
   {
     id: 38,
-    name: "Hyderabad",
+    name: "Delhi",
   },
   {
-    id: 37,
+    id: 39,
     name: "Agartala",
   },
   {
-    id: 37,
+    id: 40,
     name: "Mumbai",
   },
 ];

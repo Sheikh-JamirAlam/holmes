@@ -1,17 +1,21 @@
+.profile-hero-bg {
+  height: 6rem;
+}
+
 .profile-section {
-  padding: 3rem 5rem;
+  padding: 3rem 15rem;
   display: flex;
-  gap: 5rem;
+  gap: 3rem;
 
   &>.profile-bio {
     display: flex;
     flex-direction: column;
-    gap: 5rem;
+    gap: 2rem;
   }
 }
 
 .profile-container {
-  width: 80rem;
+  width: 65rem;
   border-radius: 2rem;
   background-color: var(--primary-white);
   border: 1px solid var(--primary-grey);
@@ -81,13 +85,32 @@
 
   &>h2 {
     margin-bottom: 1rem;
+    font-family: Expletus Sans, sans-serif;
+    font-weight: 700;
   }
 }
 
 .summary-container {
-  width: 80rem;
+  width: 65rem;
   border-radius: 2rem;
   padding: 3rem;
   background-color: var(--primary-white);
   border: 1px solid var(--primary-grey);
+}
+
+.profile-input {
+  border: none;
+  outline: none;
+  background: none;
+  font-family: Inter, sans-serif;
+
+  &.profile-heading {
+    font-weight: 600;
+    font-size: 22px;
+  }
+
+  &.profile-bio {
+    font-size: 16px;
+    width: 100%;
+  }
 }

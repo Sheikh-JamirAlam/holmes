@@ -8,13 +8,17 @@ import { NumericFormat } from "react-number-format";
 import Navbar from "../components/Navbar";
 import SearchItem from "../components/search/SearchItem";
 import SortOptionItem from "../components/search/SortOptionItem";
+import SearchTextItem from "../components/search/SearchTextItem";
 import Footer from "../components/Footer";
 import { Loading, SearchIcon, UpDown } from "../components/Icons";
+import { Locations } from "../data/Locations";
 import "../styles/Search.css";
 
 export default function Search() {
   const [searchParams, setSearchParams] = useSearchParams();
   const [searchLocation, setSearchLocation] = useState(searchParams.get("location"));
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [searchSuggestions, setSearchSuggestions] = useState([]);
   const [price, setPrice] = useState([
     parseInt(searchParams.get("price").substring(0, searchParams.get("price").indexOf(","))),
     parseInt(searchParams.get("price").substring(searchParams.get("price").indexOf(",") + 1)),
@@ -24,6 +28,7 @@ export default function Search() {
   const [roomSearchResult, setRoomSearchResult] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const sortRef = useRef();
+  const searchRef = useRef();
   const minDistance = 100;
   const handleChange = (event, newValue, activeThumb) => {
     if (!Array.isArray(newValue)) {
@@ -94,10 +99,27 @@ export default function Search() {
     setSearchParams(newParams);
   };
 
+  const handleSearchClick = (e) => {
+    const newParams = new URLSearchParams(searchParams.toString());
+    newParams.set("location", searchLocation);
+    setSearchParams(newParams);
+  };
+
+  const handleSearchTextChange = (e) => {
+    setSearchLocation(e.target.value);
+    const suggestions = Locations.filter((element) => {
+      return element.name.toLowerCase().startsWith(e.target.value.toLowerCase()) && element;
+    });
+    setSearchSuggestions(suggestions);
+  };
+
   useEffect(() => {
     document.addEventListener("click", (e) => {
       if (!sortRef.current?.contains(e.target)) {
         setIsSortOpen(false);
+      }
+      if (!searchRef.current?.contains(e.target)) {
+        setIsSearchOpen(false);
       }
     });
   });
@@ -131,11 +153,16 @@ export default function Search() {
       <section className="hero-container search-bg">
         <div id="heroBG" className="hero-bg search-hero-bg"></div>
         <div className="search-container">
-          <div className="search-bar">
+          <div ref={searchRef} className="search-bar">
             <SearchIcon />
-            <input value={searchLocation} onChange={(e) => setSearchLocation(e.target.value)} type="text" placeholder="Enter an address e.g. street, city and state or zip" />
+            <input value={searchLocation} onChange={handleSearchTextChange} onFocus={() => setIsSearchOpen(true)} type="text" placeholder="Enter an address e.g. street, city and state or zip" />
           </div>
-          <button className="btn">
+          <div className={`search-recommendation ${!isSearchOpen && "hidden"}`}>
+            {searchSuggestions.slice(0, 5).map((element, index) => {
+              return <SearchTextItem key={index} option={element.name} setSearchLocation={setSearchLocation} setIsSearchOpen={setIsSearchOpen} />;
+            })}
+          </div>
+          <button className="btn" onClick={handleSearchClick}>
             <SearchIcon />
             Search
           </button>

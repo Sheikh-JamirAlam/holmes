@@ -36,7 +36,9 @@ export default function Navbar() {
         <a href="/">
           <p>Home</p>
         </a>
-        <p>About</p>
+        <a href="/about-us">
+          <p>About</p>
+        </a>
         <p>Location</p>
         <a href="/contact-us">
           <p>Contact</p>
@@ -98,6 +100,7 @@ export default function Navbar() {
                 Cookies.remove("auth");
                 setIsUserLoggedIn(false);
                 setUserEmail("");
+                navigate("/");
               }}
             >
               <Logout className="nav-menu-icons" />

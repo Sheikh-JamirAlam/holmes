@@ -5,16 +5,28 @@ import PopularItem from "../components/home/PopularItem";
 import Footer from "../components/Footer";
 import SearchOptionItem from "../components/home/SearchOptionItem";
 import SearchOptionPrice from "../components/home/SearchOptionPrice";
+import { Locations } from "../data/Locations";
 import "../styles/Home.css";
 
 export default function Home() {
   const [isLocationOptionsOpen, setIsLocationOptionsOpen] = useState(false);
   const [locationText, setLocationText] = useState("");
+  const [searchSuggestions, setSearchSuggestions] = useState(
+    Locations.filter((loc) => (loc.name === "Kolkata") | (loc.name === "Mumbai") | (loc.name === "Delhi") | (loc.name === "Bangalore") | (loc.name === "Tamil Nadu"))
+  );
   const [isTypeOptionsOpen, setIsTypeOptionsOpen] = useState(false);
   const [typeText, setTypeText] = useState("");
   const [isPriceOptionsOpen, setIsPriceOptionsOpen] = useState(false);
   const [priceText, setPriceText] = useState("");
   const locationRef = useRef([]);
+
+  const handleSearchTextChange = (e) => {
+    setLocationText(e.target.value);
+    const suggestions = Locations.filter((element) => {
+      return element.name.toLowerCase().startsWith(e.target.value.toLowerCase()) && element;
+    });
+    setSearchSuggestions(suggestions);
+  };
 
   useEffect(() => {
     document.addEventListener("click", (e) => {
@@ -37,19 +49,17 @@ export default function Home() {
       {/* Hero section */}
       <section className="hero-container">
         <div id="heroBG" className="hero-bg"></div>
-        <h1 className="hero-text">Let's Get Your PG</h1>
+        <h1 className="hero-text">Discover Your Next Living Space</h1>
         <div className="hero-search-container">
           <div className="hero-search-filter">
             <p>Location</p>
             <div ref={(el) => (locationRef.current[0] = el)}>
-              <input value={locationText} type="text" placeholder="Where are you going?" onChange={(e) => setLocationText(e.target.value)} onClick={() => setIsLocationOptionsOpen(true)} />
+              <input value={locationText} type="text" placeholder="Where are you going?" onChange={handleSearchTextChange} onClick={() => setIsLocationOptionsOpen(true)} />
               <div className={`hero-search-options ${!isLocationOptionsOpen && "hidden"}`}>
                 <p>Popular nearby destinations</p>
-                <SearchOptionItem city="Kolkata" state="India" setLocationText={setLocationText} setIsLocationOptionsOpen={setIsLocationOptionsOpen} />
-                <SearchOptionItem city="Delhi" state="India" setLocationText={setLocationText} setIsLocationOptionsOpen={setIsLocationOptionsOpen} />
-                <SearchOptionItem city="Mumbai" state="India" setLocationText={setLocationText} setIsLocationOptionsOpen={setIsLocationOptionsOpen} />
-                <SearchOptionItem city="Kerala" state="India" setLocationText={setLocationText} setIsLocationOptionsOpen={setIsLocationOptionsOpen} />
-                <SearchOptionItem city="Bangaluru" state="India" setLocationText={setLocationText} setIsLocationOptionsOpen={setIsLocationOptionsOpen} />
+                {searchSuggestions.slice(0, 5).map((element, index) => {
+                  return <SearchOptionItem key={index} city={element.name} state="India" setLocationText={setLocationText} setIsLocationOptionsOpen={setIsLocationOptionsOpen} />;
+                })}
               </div>
             </div>
           </div>
@@ -85,8 +95,8 @@ export default function Home() {
       {/* Popular Section */}
       <section className="popular-container">
         <div>
-          <h1 className="popular-header">Popular PG's</h1>
-          <p>Checkouts ours best PG&apos;s and find your best room that suits you.</p>
+          <h1 className="popular-header">Popular PG/Flat</h1>
+          <p>Browse Our Best PG's/Flat's and Select Your Perfect Room.</p>
         </div>
         <div className="popular-items">
           <PopularItem background="./images/Home/popular-1.png" />
@@ -99,7 +109,7 @@ export default function Home() {
       <section className="popular-container">
         <div className="offers-text">
           <h1 className="popular-header">Special Offers</h1>
-          <p>Get best offers</p>
+          <p>Avail Exclusive Deals</p>
         </div>
         <div className="offers-items">
           <OfferItem background="./images/Home/offer-1.png" />
@@ -111,16 +121,17 @@ export default function Home() {
       <section className="video-container">
         <div>
           <p>
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a
-            galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
+            Browse our selection of top-rated PGs and flats to find the perfect room that fits your lifestyle. Our carefully curated options offer comfort, convenience, and affordability, ensuring you
+            have a seamless living experience. Each property is equipped with essential amenities and is located in prime areas for easy access to everything you need. Start your search today and
+            discover your ideal living space with us!
           </p>
           <h3>Wonderful Room Experience</h3>
-          <h3>Balcony Room Tour</h3>
+          <h3>With Balcony, Modern Bathrooms, Room Decorations, and etc(s)</h3>
         </div>
       </section>
       {/* Feature Section */}
       <section className="feature-container">
-        <h1>We Provides Latest Properties For Our Valuable Clients</h1>
+        <h1>We ensure a seamless experience, matching you with your dream property</h1>
         <div>
           <div>
             <img style={{ transform: "translate(20rem,0)" }} src="/images/Home/feature-1.png" alt="" />
@@ -130,15 +141,15 @@ export default function Home() {
           <div className="feature-text">
             <div>
               <h2>Budget Friendly</h2>
-              <p>We will find you the best PG according to your budget</p>
+              <p>Cost-effective choices for your ideal living situation.</p>
             </div>
             <div>
               <h2>Prime Location</h2>
-              <p>We will find you the best PG according to your budget</p>
+              <p>Discover Convenience and Comfort in Prime Locations! Easy to access your needs.</p>
             </div>
             <div>
               <h2>Trust Worthy</h2>
-              <p>We will find you the best PG according to your budget</p>
+              <p>Reliable, Honest, and Dependable: Your Trusted Choice for Quality Service.</p>
             </div>
           </div>
         </div>

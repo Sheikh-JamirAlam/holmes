@@ -60,7 +60,7 @@ main {
 }
 
 .hero-container {
-  padding: 10rem 0 8rem;
+  padding: 4rem 0 8rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -68,7 +68,9 @@ main {
 }
 
 .hero-text {
-  font-size: 52px;
+  width: 45rem;
+  text-align: center;
+  font-size: 64px;
   font-family: Expletus Sans, sans-serif;
   font-weight: 700;
   color: var(--primary-white);

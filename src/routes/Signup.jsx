@@ -26,7 +26,7 @@ export default function Signup() {
       setIsPassError(true);
     } else {
       try {
-        const getRes = await axios.get(`http://localhost:8080/api/user/getuserbyemail=${email}`);
+        const getRes = await axios.get(`http://localhost:8080/api/user/getuser=${email}`);
         if (!getRes.data.userEmail) {
           const res = await axios.post("http://localhost:8080/api/user/signup", {
             userName: name,
@@ -34,9 +34,9 @@ export default function Signup() {
             userEmail: email,
             userPass: pass,
           });
-          if (res.data === "Login successful") {
+          if (res.data === "Signup successful") {
             Cookies.set("auth", email, { expires: 7 });
-            navigate("/home");
+            navigate("/");
           }
         } else {
           navigate("/login");

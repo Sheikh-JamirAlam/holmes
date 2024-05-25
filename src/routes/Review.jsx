@@ -1,8 +1,9 @@
-import "../styles/Review.css";
+// import "../styles/Review.css";
 import { useState } from "react";
 import Rating from "@mui/material/Rating";
 import Stack from "@mui/material/Stack";
 import { Camera } from "../components/Icons";
+
 export default function Review() {
   const [image, setImage] = useState(null);
 
@@ -20,17 +21,12 @@ export default function Review() {
       reader.readAsDataURL(selectedFile);
     }
   };
+
   return (
-    <div className="from">
-      <h1 className="create">Create Review</h1>
+    <section className="review-container">
+      <h1 className="review-create">Create Review</h1>
       <label>
-        <textarea
-          name="Pg/Flat"
-          className="custom-textarea"
-          rows={10}
-          cols={110}
-          placeholder="Pg/Flat details"
-        />
+        <textarea name="Pg/Flat" className="review-custom-textarea" rows={10} cols={110} placeholder="Pg/Flat details" />
       </label>
       <hr />
       <h3 className="overall-rating">Overall rating</h3>
@@ -49,36 +45,20 @@ export default function Review() {
         <label htmlFor="contact-img">
           <Camera />
         </label>
-        <input
-          id="contact-img"
-          type="file"
-          accept="image/*"
-          onChange={handleImageChange}
-        />
+        <input id="contact-img" type="file" accept="image/*" onChange={handleImageChange} />
         {image && <img src={image} alt="user-entered-images" />}
       </div>
       <hr />
       {/* alternate for hr */}
       <h3 className="add-headline">Add a headline</h3>
       <label>
-        <input
-          type="text"
-          className="what"
-          name="headline"
-          placeholder="What's most important to know"
-        />
+        <input type="text" className="what" name="headline" placeholder="What's most important to know" />
       </label>
       <h3 className="write">Write your review</h3>
       <label>
-        <textarea
-          name="Pg/Flat"
-          className="custom-textarea2"
-          rows={5}
-          cols={107}
-          placeholder="Pg/Flat details"
-        />
+        <textarea name="Pg/Flat" className="custom-textarea2" rows={5} cols={107} placeholder="Pg/Flat details" />
       </label>
       <button className="button">Submit</button>
-    </div>
+    </section>
   );
 }

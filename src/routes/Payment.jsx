@@ -1,4 +1,4 @@
-import "../styles/Payment.css";
+// import "../styles/Payment.css";
 
 export default function Payment() {
   return (
@@ -22,19 +22,11 @@ export default function Payment() {
                 </div>
                 <div className="inputBox">
                   <span>email :</span>
-                  <input
-                    className="input"
-                    type="email"
-                    placeholder="example@example.com"
-                  />
+                  <input className="input" type="email" placeholder="example@example.com" />
                 </div>
                 <div className="inputBox">
                   <span>address :</span>
-                  <input
-                    className="input"
-                    type="text"
-                    placeholder="room - street - locality"
-                  />
+                  <input className="input" type="text" placeholder="room - street - locality" />
                 </div>
                 <div className="inputBox">
                   <span>city :</span>
@@ -48,11 +40,7 @@ export default function Payment() {
                   </div>
                   <div className="inputBox">
                     <span>zip code :</span>
-                    <input
-                      className="input"
-                      type="text"
-                      placeholder="123 456"
-                    />
+                    <input className="input" type="text" placeholder="123 456" />
                   </div>
                 </div>
               </div>
@@ -90,11 +78,7 @@ export default function Payment() {
               </div>
             </div>
 
-            <input
-              type="submit"
-              value="proceed to checkout"
-              class="submit-btn"
-            />
+            <input type="submit" value="proceed to checkout" class="submit-btn" />
           </form>
         </div>
       </div>
