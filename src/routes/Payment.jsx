@@ -17,30 +17,54 @@ export default function Payment() {
                 <h3 className="payment-title">billing address</h3>
 
                 <div className="payment-inputBox">
-                  <span>full name :</span>
-                  <input className="payment-input" type="text" placeholder="john deo" />
+                  <span>Full Name :</span>
+                  <input
+                    className="payment-input"
+                    type="text"
+                    placeholder="John Deo"
+                  />
                 </div>
                 <div className="payment-inputBox">
-                  <span>email :</span>
-                  <input className="payment-input" type="email" placeholder="example@example.com" />
+                  <span>Email :</span>
+                  <input
+                    className="payment-input"
+                    type="email"
+                    placeholder="1234@gmail.com"
+                  />
                 </div>
                 <div className="payment-inputBox">
-                  <span>address :</span>
-                  <input className="payment-input" type="text" placeholder="room - street - locality" />
+                  <span>Address :</span>
+                  <input
+                    className="payment-input"
+                    type="text"
+                    placeholder="room - street - locality"
+                  />
                 </div>
                 <div className="payment-inputBox">
-                  <span>city :</span>
-                  <input className="payment-input" type="text" placeholder="Mumbai" />
+                  <span>City :</span>
+                  <input
+                    className="payment-input"
+                    type="text"
+                    placeholder="Mumbai"
+                  />
                 </div>
 
                 <div className="payment-flex">
                   <div class="payment-inputBox">
-                    <span>state :</span>
-                    <input className="payment-input" type="text" placeholder="India" />
+                    <span>State :</span>
+                    <input
+                      className="payment-input"
+                      type="text"
+                      placeholder="India"
+                    />
                   </div>
                   <div className="payment-inputBox">
-                    <span>zip code :</span>
-                    <input className="payment-input" type="text" placeholder="123 456" />
+                    <span>Zip code :</span>
+                    <input
+                      className="payment-input"
+                      type="text"
+                      placeholder="123 456"
+                    />
                   </div>
                 </div>
               </div>
@@ -49,25 +73,25 @@ export default function Payment() {
                 <h3 class="payment-title">payment</h3>
 
                 <div class="payment-inputBox">
-                  <span>cards accepted :</span>
+                  <span>Cards accepted :</span>
                   <img src="./images/card.png" alt="" />
                 </div>
                 <div class="payment-inputBox">
-                  <span>name on card :</span>
+                  <span>Name on card :</span>
                   <input type="text" placeholder="mr. john deo" />
                 </div>
                 <div class="payment-inputBox">
-                  <span>credit card number :</span>
+                  <span>Credit card number :</span>
                   <input type="number" placeholder="1111-2222-3333-4444" />
                 </div>
                 <div class="payment-inputBox">
-                  <span>exp month :</span>
+                  <span>Exp month :</span>
                   <input type="text" placeholder="january" />
                 </div>
 
                 <div class="payment-flex">
                   <div class="payment-inputBox">
-                    <span>exp year :</span>
+                    <span>Exp year :</span>
                     <input type="number" placeholder="2022" />
                   </div>
                   <div class="payment-inputBox">
@@ -78,7 +102,11 @@ export default function Payment() {
               </div>
             </div>
 
-            <input type="submit" value="proceed to checkout" class="payment-submit-btn" />
+            <input
+              type="submit"
+              value="Proceed to Checkout"
+              class="payment-submit-btn"
+            />
           </form>
         </div>
       </div>
