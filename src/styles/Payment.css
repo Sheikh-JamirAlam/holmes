@@ -28,41 +28,41 @@
     justify-content: center;
   }
 
-  .payment-container form {
+  .payment-container .payment-form-container {
     padding: 20px;
     width: 700px;
     background: #fff;
     box-shadow: 0 5px 10px rgba(0, 0, 0, .1);
   }
 
-  .payment-container form .payment-row {
+  .payment-container .payment-form-container .payment-row {
     display: flex;
     flex-wrap: wrap;
     gap: 15px;
   }
 
-  .payment-container form .payment-row .payment-col {
+  .payment-container .payment-form-container .payment-row .payment-col {
     flex: 1 1 250px;
   }
 
-  .payment-container form .payment-row .payment-col .payment-title {
+  .payment-container .payment-form-container .payment-row .payment-col .payment-title {
     font-size: 20px;
     color: #333;
     padding-bottom: 5px;
     text-transform: uppercase;
   }
 
-  .payment-container form .payment-row .payment-col .payment-inputBox {
+  .payment-container .payment-form-container .payment-row .payment-col .payment-inputBox {
     margin: 15px 0;
   }
 
-  .payment-container form .payment-row .payment-col .payment-inputBox span {
+  .payment-container .payment-form-container .payment-row .payment-col .payment-inputBox span {
     margin-bottom: 10px;
     display: block;
     text-align: start;
   }
 
-  .payment-container form .payment-row .payment-col .payment-inputBox input {
+  .payment-container .payment-form-container .payment-row .payment-col .payment-inputBox input {
     width: 100%;
     border: 1px solid #ccc;
     padding: 10px 15px;
@@ -70,26 +70,26 @@
     text-transform: none;
   }
 
-  .payment-container form .payment-row .payment-col .payment-inputBox input:focus {
+  .payment-container .payment-form-container .payment-row .payment-col .payment-inputBox input:focus {
     border: 1px solid #000;
   }
 
-  .payment-container form .payment-row .payment-col .payment-flex {
+  .payment-container .payment-form-container .payment-row .payment-col .payment-flex {
     display: flex;
     gap: 15px;
   }
 
-  .payment-container form .payment-row .payment-col .payment-flex .payment-inputBox {
+  .payment-container .payment-form-container .payment-row .payment-col .payment-flex .payment-inputBox {
     margin-top: 5px;
   }
 
-  .payment-container form .payment-row .payment-col .payment-inputBox img {
+  .payment-container .payment-form-container .payment-row .payment-col .payment-inputBox img {
     height: 34px;
     margin-top: 5px;
     filter: drop-shadow(0 0 1px #000);
   }
 
-  .payment-container form .payment-submit-btn {
+  .payment-container .payment-form-container .payment-submit-btn {
     width: 100%;
     padding: 12px;
     font-size: 17px;
@@ -99,6 +99,6 @@
     cursor: pointer;
   }
 
-  .payment-container form .payment-submit-btn:hover {
+  .payment-container .payment-form-container .payment-submit-btn:hover {
     background: #b4b2b2;
   }

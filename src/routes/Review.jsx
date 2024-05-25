@@ -4,6 +4,7 @@ import Stack from "@mui/material/Stack";
 import { Camera } from "../components/Icons";
 import Navbar from "../components/Navbar";
 import "../styles/Review.css";
+import Footer from "../components/Footer";
 
 export default function Review() {
   const [image, setImage] = useState(null);
@@ -57,6 +58,7 @@ export default function Review() {
         </label>
         <button className="btn review-btn">Submit</button>
       </section>
+      <Footer />
     </main>
   );
 }

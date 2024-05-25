@@ -1,22 +1,26 @@
 .terms-container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-  }
+  max-width: 800px;
+  margin: 3rem auto 0;
+  padding: 1.5px;
+}
 
-  .TandC-h1 {
-    font-size: 24px;
-    margin-bottom: 20px;
-  }
+.TandC-h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  font-family: Expletus Sans, sans-serif;
+  font-weight: 700;
+}
 
-  .TandC-h2 {
-    font-size: 20px;
-    margin-top: 20px;
-    margin-bottom: 10px;
-  }
+.TandC-h2 {
+  font-size: 20px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  font-family: Expletus Sans, sans-serif;
+  font-weight: 700;
+}
 
-  .TandC-p{
-    font-size: 16px;
-    line-height: 1.6;
-    margin-bottom: 15px;
-  }
+.TandC-p {
+  font-size: 16px;
+  line-height: 1.6;
+  margin-bottom: 15px;
+}
