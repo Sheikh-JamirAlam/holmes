@@ -1,76 +1,76 @@
-// import "../styles/Payment.css";
+import "../styles/Payment.css";
 
 export default function Payment() {
   return (
-    <div class="page">
+    <div class="payment-page">
       <div
-        className="background"
+        className="payment-background"
         style={{
           backgroundImage: `url('./images/payment/payment.avif')`,
         }}
       ></div>
-      <div className="div-container">
-        <div className="container">
-          <form action="">
-            <div className="row">
-              <div className="col">
-                <h3 className="title">billing address</h3>
+      <div className="payment-div-container">
+        <div className="payment-container">
+          <form>
+            <div className="payment-row">
+              <div className="payment-col">
+                <h3 className="payment-title">billing address</h3>
 
-                <div className="inputBox">
+                <div className="payment-inputBox">
                   <span>full name :</span>
-                  <input className="input" type="text" placeholder="john deo" />
+                  <input className="payment-input" type="text" placeholder="john deo" />
                 </div>
-                <div className="inputBox">
+                <div className="payment-inputBox">
                   <span>email :</span>
-                  <input className="input" type="email" placeholder="example@example.com" />
+                  <input className="payment-input" type="email" placeholder="example@example.com" />
                 </div>
-                <div className="inputBox">
+                <div className="payment-inputBox">
                   <span>address :</span>
-                  <input className="input" type="text" placeholder="room - street - locality" />
+                  <input className="payment-input" type="text" placeholder="room - street - locality" />
                 </div>
-                <div className="inputBox">
+                <div className="payment-inputBox">
                   <span>city :</span>
-                  <input className="input" type="text" placeholder="Mumbai" />
+                  <input className="payment-input" type="text" placeholder="Mumbai" />
                 </div>
 
-                <div className="flex">
-                  <div class="inputBox">
+                <div className="payment-flex">
+                  <div class="payment-inputBox">
                     <span>state :</span>
-                    <input className="input" type="text" placeholder="India" />
+                    <input className="payment-input" type="text" placeholder="India" />
                   </div>
-                  <div className="inputBox">
+                  <div className="payment-inputBox">
                     <span>zip code :</span>
-                    <input className="input" type="text" placeholder="123 456" />
+                    <input className="payment-input" type="text" placeholder="123 456" />
                   </div>
                 </div>
               </div>
 
-              <div class="col">
-                <h3 class="title">payment</h3>
+              <div class="payment-col">
+                <h3 class="payment-title">payment</h3>
 
-                <div class="inputBox">
+                <div class="payment-inputBox">
                   <span>cards accepted :</span>
                   <img src="./images/card.png" alt="" />
                 </div>
-                <div class="inputBox">
+                <div class="payment-inputBox">
                   <span>name on card :</span>
                   <input type="text" placeholder="mr. john deo" />
                 </div>
-                <div class="inputBox">
+                <div class="payment-inputBox">
                   <span>credit card number :</span>
                   <input type="number" placeholder="1111-2222-3333-4444" />
                 </div>
-                <div class="inputBox">
+                <div class="payment-inputBox">
                   <span>exp month :</span>
                   <input type="text" placeholder="january" />
                 </div>
 
-                <div class="flex">
-                  <div class="inputBox">
+                <div class="payment-flex">
+                  <div class="payment-inputBox">
                     <span>exp year :</span>
                     <input type="number" placeholder="2022" />
                   </div>
-                  <div class="inputBox">
+                  <div class="payment-inputBox">
                     <span>CVV :</span>
                     <input type="text" placeholder="1234" />
                   </div>
@@ -78,7 +78,7 @@ export default function Payment() {
               </div>
             </div>
 
-            <input type="submit" value="proceed to checkout" class="submit-btn" />
+            <input type="submit" value="proceed to checkout" class="payment-submit-btn" />
           </form>
         </div>
       </div>
