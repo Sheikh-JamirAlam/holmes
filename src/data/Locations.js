@@ -149,10 +149,10 @@ export const Locations = [
   },
   {
     id: 38,
-    name: "Delhi",
+    name: "Hyderabad",
   },
   {
-    id: 39,
+    id: 37,
     name: "Agartala",
   },
   {
