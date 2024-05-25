@@ -54,14 +54,12 @@ export default function Home() {
           <div className="hero-search-filter">
             <p>Location</p>
             <div ref={(el) => (locationRef.current[0] = el)}>
-              <input value={locationText} type="text" placeholder="Where are you going?" onChange={(e) => setLocationText(e.target.value)} onClick={() => setIsLocationOptionsOpen(true)} />
+              <input value={locationText} type="text" placeholder="Where are you going?" onChange={handleSearchTextChange} onClick={() => setIsLocationOptionsOpen(true)} />
               <div className={`hero-search-options ${!isLocationOptionsOpen && "hidden"}`}>
                 <p>Popular nearby destinations</p>
-                <SearchOptionItem city="Kolkata" state="India" setLocationText={setLocationText} setIsLocationOptionsOpen={setIsLocationOptionsOpen} />
-                <SearchOptionItem city="Delhi" state="India" setLocationText={setLocationText} setIsLocationOptionsOpen={setIsLocationOptionsOpen} />
-                <SearchOptionItem city="Mumbai" state="India" setLocationText={setLocationText} setIsLocationOptionsOpen={setIsLocationOptionsOpen} />
-                <SearchOptionItem city="Kerala" state="India" setLocationText={setLocationText} setIsLocationOptionsOpen={setIsLocationOptionsOpen} />
-                <SearchOptionItem city="Bangaluru" state="India" setLocationText={setLocationText} setIsLocationOptionsOpen={setIsLocationOptionsOpen} />
+                {searchSuggestions.slice(0, 5).map((element, index) => {
+                  return <SearchOptionItem key={index} city={element.name} state="India" setLocationText={setLocationText} setIsLocationOptionsOpen={setIsLocationOptionsOpen} />;
+                })}
               </div>
             </div>
           </div>
@@ -143,7 +141,6 @@ export default function Home() {
           <div className="feature-text">
             <div>
               <h2>Budget Friendly</h2>
-              <p>Cost-effective choices for your ideal living situation.</p>
               <p>Cost-effective choices for your ideal living situation.</p>
             </div>
             <div>
