@@ -1,60 +1,60 @@
-/* *{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  } */
-  
-  body {
-    background-color: var(--secondary-white);
-    font-family: Inter, sans-serif;
-  }
-  
-  
-    .faq-container {
-      max-width: 600px;
-      margin: 0 auto;
-      padding: 20px;
-    }
-    .faq-container.h1{
-      margin: 2rem;
-    }
-  
-    .faq-content{
-      margin-top: 2rem;
-    }
-  
-    .faq-item {
-      margin-bottom: 20px;
-    }
-  
-    .faq-question {
-      background-color: var(--primary-grey);
-      padding: 10px;
-      cursor: pointer;
-      border-radius: 5px;
-    }
-  
-    .faq-answer {
-      padding: 10px;
-      border: 1px solid var( --primary-white);
-      border-top: none;
-      border-radius: 0 0 5px 5px;
-      display: none;
-    }
-  
-    .faq-question.active {
-      background-color: var(--primary-grey);
-    }
-  
-    .faq-answer.active {
-      display: block;
-    }
-  
-    .arrow {
-      font-size: 1.2em;
-      transition: transform 0.3s;
-      margin-right: 10px;
-    }
-    .arrow.active {
-      transform: rotate(180deg);
-    }
+.faq-container {
+  max-width: 600px;
+  margin: 3rem auto 0;
+  padding: 1.5rem;
+}
+
+.faq-header {
+  font-family: Expletus Sans, sans-serif;
+  font-weight: 700;
+}
+
+.faq-container.h1 {
+  margin: 2rem;
+}
+
+.faq-content {
+  margin-top: 2rem;
+}
+
+.faq-item {
+  margin-bottom: 20px;
+}
+
+.faq-question {
+  background-color: var(--primary-grey);
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.faq-answer {
+  padding: 10px;
+  border: 1px solid var(--primary-grey);
+  border-top: none;
+  border-radius: 0 0 5px 5px;
+  display: none;
+  background-color: var(--primary-white);
+}
+
+.faq-question.active {
+  background-color: var(--primary-grey);
+}
+
+.faq-answer.active {
+  display: block;
+}
+
+.arrow {
+  font-size: 1.2em;
+  transition: transform 0.3s;
+  margin-right: 10px;
+  transform: rotate(-90deg);
+}
+
+.arrow.active {
+  transform: rotate(90deg);
+}

@@ -66,7 +66,7 @@ const router = createBrowserRouter([
     element: <FAQPage />,
   },
   {
-    path: "/terms&conditions",
+    path: "/terms",
     element: <TermsandConditions />,
   },
 ]);

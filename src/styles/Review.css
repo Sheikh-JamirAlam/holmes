@@ -16,7 +16,9 @@
   border: 1px solid #ccc;
   border-radius: 6px;
   font-size: 16px;
-  resize: vertical;
+  resize: none;
+  font-family: Inter, sans-serif;
+  font-size: 16px;
 }
 
 hr {
@@ -35,6 +37,12 @@ hr {
 .review-what {
   width: 100%;
   height: 30px;
+  padding: 10px;
+  margin-top: 15px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-family: Inter, sans-serif;
+  font-size: 16px;
 }
 
 .review-add-headline {
@@ -53,7 +61,13 @@ hr {
   border: 1px solid #ccc;
   border-radius: 6px;
   font-size: 16px;
-  resize: vertical;
+  resize: none;
+  font-family: Inter, sans-serif;
+  font-size: 16px;
 }
 
-.review-btn {}
+.review-btn {
+  width: 10rem;
+  margin-top: 1rem;
+  border-radius: 10px;
+}
