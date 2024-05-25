@@ -15,6 +15,7 @@ import AdminLogin from "./routes/AdminLogin";
 import Review from "./routes/Review";
 import FAQPage from "./routes/Faq";
 import TermsandConditions from "./routes/TermsandConditions";
+import PrivacyPolicy from "./routes/Privacy";
 
 const router = createBrowserRouter([
   {
@@ -68,6 +69,10 @@ const router = createBrowserRouter([
   {
     path: "/terms&conditions",
     element: <TermsandConditions />,
+  },
+  {
+    path: "/privacy",
+    element: <PrivacyPolicy />,
   },
 ]);
 
