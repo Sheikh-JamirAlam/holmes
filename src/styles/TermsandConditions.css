@@ -4,18 +4,18 @@
     padding: 20px;
   }
 
-  h1 {
+  .TandC-h1 {
     font-size: 24px;
     margin-bottom: 20px;
   }
 
-  h2 {
+  .TandC-h2 {
     font-size: 20px;
     margin-top: 20px;
     margin-bottom: 10px;
   }
 
-  p {
+  .TandC-p{
     font-size: 16px;
     line-height: 1.6;
     margin-bottom: 15px;
