@@ -13,6 +13,8 @@ import Product from "./routes/Product";
 import Payment from "./routes/Payment";
 import AdminLogin from "./routes/AdminLogin";
 import Review from "./routes/Review";
+import FAQPage from "./routes/Faq";
+import TermsandConditions from "./routes/TermsandConditions";
 
 const router = createBrowserRouter([
   {
@@ -58,6 +60,14 @@ const router = createBrowserRouter([
   {
     path: "/payment",
     element: <Payment />,
+  },
+  {
+    path: "/faq",
+    element: <FAQPage />,
+  },
+  {
+    path: "/terms&conditions",
+    element: <TermsandConditions />,
   },
 ]);
 
