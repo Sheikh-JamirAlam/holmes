@@ -432,6 +432,11 @@ main {
   background-color: var(--dark-blue);
   color: var(--primary-white);
 
+  & a {
+    color: var(--primary-white);
+    text-decoration: none;
+  }
+
   &>.social {
     display: flex;
     flex-direction: column;

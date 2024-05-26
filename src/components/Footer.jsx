@@ -11,26 +11,37 @@ export default function Footer() {
           <LogosTwitter />
         </div>
         <div>
-          <p>Privacy Policy</p>
-          <p>Terms & Condition</p>
+          <a href="/privacy">
+            <p>Privacy Policy</p>
+          </a>
+          <a href="/terms">
+            <p>Terms & Condition</p>
+          </a>
         </div>
       </div>
       <div className="links">
         <div>
           <h3>Information</h3>
-          <p>Home</p>
-          <p>Search</p>
-          <p>Travel</p>
+          <a href="/">
+            <p>Home</p>
+          </a>
+          <a href="/about-us">
+            <p>About Us</p>
+          </a>
         </div>
         <div>
           <h3>Helpful Links</h3>
-          <p>Support</p>
-          <p>FAQ</p>
+          <a href="/faq">
+            <p>FAQ</p>
+          </a>
+          <a href="/contact">
+            <p>Contact Us</p>
+          </a>
         </div>
         <div>
           <h3>Contact</h3>
           <p>+91 1234567891</p>
-          <p>hello@gmail.com</p>
+          <p>support.holmes@gmail.com</p>
         </div>
       </div>
     </section>

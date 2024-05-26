@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import { NumericFormat } from "react-number-format";
 import { Loading } from "../Icons";
 
 export default function OfferItem(props) {
@@ -15,7 +16,9 @@ export default function OfferItem(props) {
       <div>
         <div style={{ backgroundImage: `url(${props.background})` }}></div>
         <div className="details">
-          <p>₹{props.price}</p>
+          <p>
+            ₹<NumericFormat className="reserve-cost" displayType="text" value={props.price} thousandsGroupStyle="lakh" thousandSeparator="," />
+          </p>
           <div>
             <span>
               {props.rooms} Room{props.rooms > 1 ? "s" : ""}
