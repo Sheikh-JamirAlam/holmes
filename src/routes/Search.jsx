@@ -7,15 +7,15 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import { NumericFormat } from "react-number-format";
 import Navbar from "../components/Navbar";
 import SearchItem from "../components/search/SearchItem";
-import SortOptionItem from "../components/search/SortOptionItem";
 import SearchTextItem from "../components/search/SearchTextItem";
 import Footer from "../components/Footer";
-import { Loading, SearchIcon, UpDown } from "../components/Icons";
+import { Loading, SearchIcon } from "../components/Icons";
 import { Locations } from "../data/Locations";
 import "../styles/Search.css";
 
 export default function Search() {
   const [searchParams, setSearchParams] = useSearchParams();
+  const [images, setImages] = useState([]);
   const [searchLocation, setSearchLocation] = useState(searchParams.get("location"));
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchSuggestions, setSearchSuggestions] = useState([]);
@@ -23,11 +23,8 @@ export default function Search() {
     parseInt(searchParams.get("price").substring(0, searchParams.get("price").indexOf(","))),
     parseInt(searchParams.get("price").substring(searchParams.get("price").indexOf(",") + 1)),
   ]);
-  const [isSortOpen, setIsSortOpen] = useState(false);
-  const [sortText, setSortText] = useState("Our top picks");
   const [roomSearchResult, setRoomSearchResult] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
-  const sortRef = useRef();
   const searchRef = useRef();
   const minDistance = 100;
   const handleChange = (event, newValue, activeThumb) => {
@@ -115,9 +112,6 @@ export default function Search() {
 
   useEffect(() => {
     document.addEventListener("click", (e) => {
-      if (!sortRef.current?.contains(e.target)) {
-        setIsSortOpen(false);
-      }
       if (!searchRef.current?.contains(e.target)) {
         setIsSearchOpen(false);
       }
@@ -138,8 +132,10 @@ export default function Search() {
           }${searchParams.get("parking") ? "&parking=true" : ""}
           `
         );
-        setIsLoading(false);
         setRoomSearchResult(res.data);
+        const response = await axios.get(`http://localhost:8080/api/images/getfirstofroom`);
+        setImages(response.data);
+        setIsLoading(false);
       } catch (err) {
         console.error(err);
       }
@@ -228,33 +224,19 @@ export default function Search() {
           </div>
           <div>
             <h2>Others</h2>
-            <FormControlLabel control={<Checkbox id="ac" checked={searchParams.get("ac")} onChange={handlePropertyFilterChange} />} label="Air Conditioning" />
-            <FormControlLabel control={<Checkbox id="pvtbath" checked={searchParams.get("pvtbath")} onChange={handlePropertyFilterChange} />} label="Private Bathroom" />
-            <FormControlLabel control={<Checkbox id="wifi" checked={searchParams.get("wifi")} onChange={handlePropertyFilterChange} />} label="Wifi Available" />
-            <FormControlLabel control={<Checkbox id="furnished" checked={searchParams.get("furnished")} onChange={handlePropertyFilterChange} />} label="Furnished" />
-            <FormControlLabel control={<Checkbox id="kitchen" checked={searchParams.get("kitchen")} onChange={handlePropertyFilterChange} />} label="Kitchen" />
-            <FormControlLabel control={<Checkbox id="geyser" checked={searchParams.get("geyser")} onChange={handlePropertyFilterChange} />} label="Geyser Installed" />
-            <FormControlLabel control={<Checkbox id="fridge" checked={searchParams.get("fridge")} onChange={handlePropertyFilterChange} />} label="Fridge Available" />
-            <FormControlLabel control={<Checkbox id="parking" checked={searchParams.get("parking")} onChange={handlePropertyFilterChange} />} label="Parking Enabled" />
+            <FormControlLabel control={<Checkbox id="ac" checked={searchParams.get("ac") === "true"} onChange={handlePropertyFilterChange} />} label="Air Conditioning" />
+            <FormControlLabel control={<Checkbox id="pvtbath" checked={searchParams.get("pvtbath") === "true"} onChange={handlePropertyFilterChange} />} label="Private Bathroom" />
+            <FormControlLabel control={<Checkbox id="wifi" checked={searchParams.get("wifi") === "true"} onChange={handlePropertyFilterChange} />} label="Wifi Available" />
+            <FormControlLabel control={<Checkbox id="furnished" checked={searchParams.get("furnished") === "true"} onChange={handlePropertyFilterChange} />} label="Furnished" />
+            <FormControlLabel control={<Checkbox id="kitchen" checked={searchParams.get("kitchen") === "true"} onChange={handlePropertyFilterChange} />} label="Kitchen" />
+            <FormControlLabel control={<Checkbox id="geyser" checked={searchParams.get("geyser") === "true"} onChange={handlePropertyFilterChange} />} label="Geyser Installed" />
+            <FormControlLabel control={<Checkbox id="fridge" checked={searchParams.get("fridge") === "true"} onChange={handlePropertyFilterChange} />} label="Fridge Available" />
+            <FormControlLabel control={<Checkbox id="parking" checked={searchParams.get("parking") === "true"} onChange={handlePropertyFilterChange} />} label="Parking Enabled" />
           </div>
         </section>
         <section className="search-result-container">
           <div>
             <h2>Results: {roomSearchResult?.length} Properties found</h2>
-            <div ref={sortRef} className="search-sort-container">
-              <button onClick={() => setIsSortOpen(true)}>
-                {`Sort by: ${sortText}`}
-                <UpDown />
-              </button>
-              <div className={`sort-options ${!isSortOpen && "hidden"}`}>
-                <SortOptionItem option="Our top picks" setSortText={setSortText} setIsSortOpen={setIsSortOpen} />
-                <SortOptionItem option="Price (Low to High)" setSortText={setSortText} setIsSortOpen={setIsSortOpen} />
-                <SortOptionItem option="Price (High to Low)" setSortText={setSortText} setIsSortOpen={setIsSortOpen} />
-                <SortOptionItem option="Rating (High to Low)" setSortText={setSortText} setIsSortOpen={setIsSortOpen} />
-                <SortOptionItem option="Rating (Low to High)" setSortText={setSortText} setIsSortOpen={setIsSortOpen} />
-                <SortOptionItem option="Highest reviews" setSortText={setSortText} setIsSortOpen={setIsSortOpen} />
-              </div>
-            </div>
           </div>
           {isLoading ? (
             <Loading className="loading-svg" />
@@ -263,6 +245,7 @@ export default function Search() {
               return (
                 <SearchItem
                   key={index}
+                  image={images[index]?.iImage}
                   rid={room.roomId}
                   price={room.roomPrice}
                   location={room.roomAddress}

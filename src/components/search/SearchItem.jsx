@@ -7,7 +7,7 @@ export default function SearchItem(props) {
 
   return (
     <div className="search-item-container" onClick={() => navigate(`/rooms/${props.rid}`)}>
-      <div className="search-item-img"></div>
+      <div className="search-item-img" style={{ backgroundImage: `url(data:image/jpeg;base64,${props.image})` }}></div>
       <div className="search-item-details">
         <h1>
           ₹<NumericFormat className="reserve-cost" displayType="text" value={props.price} thousandsGroupStyle="lakh" thousandSeparator="," />
