@@ -481,6 +481,18 @@ main {
     }
   }
 
+  &.product-loading-main {
+    width: 65%;
+    height: 30.5rem;
+    align-items: center;
+  }
+
+  &.product-loading {
+    width: 260.88px;
+    height: 15rem;
+    align-items: center;
+  }
+
   &>.loading-svg {
     width: 3rem;
     height: 3rem;

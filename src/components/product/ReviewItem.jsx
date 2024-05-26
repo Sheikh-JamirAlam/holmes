@@ -10,7 +10,6 @@ export default function ReviewItem(props) {
       try {
         const res = await axios.get(`http://localhost:8080/api/reviews/getreviewbyroomid=${props.rid}`);
         if (res.data) {
-          console.log(res.data);
           setReviews(res.data);
         }
       } catch (err) {

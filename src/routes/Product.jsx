@@ -4,7 +4,7 @@ import { Avatar, Backdrop } from "@mui/material";
 import axios from "axios";
 import { NumericFormat } from "react-number-format";
 import Navbar from "../components/Navbar";
-import { AddCircle, Star, SubtractCircle } from "../components/Icons";
+import { AddCircle, Loading, Star, SubtractCircle } from "../components/Icons";
 import "../styles/Product.css";
 import ReviewItem from "../components/product/ReviewItem";
 import Footer from "../components/Footer";
@@ -45,17 +45,47 @@ export default function Product() {
       <section className="product-hero-section">
         <h1>{room?.roomName}</h1>
         <div className="product-hero-img">
-          <div onClick={() => setImageOpen([true, `data:image/jpeg;base64,${images[0]}`])} className="product-main-img" style={{ backgroundImage: `url(data:image/jpeg;base64,${images[0]})` }}></div>
+          {images.length === 5 ? (
+            <div onClick={() => setImageOpen([true, `data:image/jpeg;base64,${images[0]}`])} className="product-main-img" style={{ backgroundImage: `url(data:image/jpeg;base64,${images[0]})` }}></div>
+          ) : (
+            <div className="popular-loading-svg-container product-loading-main">
+              <Loading className="loading-svg" />
+            </div>
+          )}
           <Backdrop className="product-backdrop" sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }} open={imageOpen[0]} onClick={() => setImageOpen((prev) => prev.with(0, false))}>
             <img className="product-zoomed-img" src={imageOpen[1]} alt="room" />
           </Backdrop>
           <div className="product-other-img">
-            <div onClick={() => setImageOpen([true, `data:image/jpeg;base64,${images[1]}`])} style={{ backgroundImage: `url(data:image/jpeg;base64,${images[1]})` }}></div>
-            <div onClick={() => setImageOpen([true, `data:image/jpeg;base64,${images[2]}`])} style={{ backgroundImage: `url(data:image/jpeg;base64,${images[2]})` }}></div>
+            {images.length === 5 ? (
+              <div onClick={() => setImageOpen([true, `data:image/jpeg;base64,${images[1]}`])} style={{ backgroundImage: `url(data:image/jpeg;base64,${images[1]})` }}></div>
+            ) : (
+              <div className="popular-loading-svg-container product-loading">
+                <Loading className="loading-svg" />
+              </div>
+            )}
+            {images.length === 5 ? (
+              <div onClick={() => setImageOpen([true, `data:image/jpeg;base64,${images[2]}`])} style={{ backgroundImage: `url(data:image/jpeg;base64,${images[2]})` }}></div>
+            ) : (
+              <div className="popular-loading-svg-container product-loading">
+                <Loading className="loading-svg" />
+              </div>
+            )}
           </div>
           <div className="product-other-img">
-            <div onClick={() => setImageOpen([true, `data:image/jpeg;base64,${images[3]}`])} style={{ backgroundImage: `url(data:image/jpeg;base64,${images[3]})` }}></div>
-            <div onClick={() => setImageOpen([true, `data:image/jpeg;base64,${images[4]}`])} style={{ backgroundImage: `url(data:image/jpeg;base64,${images[4]})` }}></div>
+            {images.length === 5 ? (
+              <div onClick={() => setImageOpen([true, `data:image/jpeg;base64,${images[3]}`])} style={{ backgroundImage: `url(data:image/jpeg;base64,${images[3]})` }}></div>
+            ) : (
+              <div className="popular-loading-svg-container product-loading">
+                <Loading className="loading-svg" />
+              </div>
+            )}
+            {images.length === 5 ? (
+              <div onClick={() => setImageOpen([true, `data:image/jpeg;base64,${images[4]}`])} style={{ backgroundImage: `url(data:image/jpeg;base64,${images[4]})` }}></div>
+            ) : (
+              <div className="popular-loading-svg-container product-loading">
+                <Loading className="loading-svg" />
+              </div>
+            )}
           </div>
         </div>
       </section>
