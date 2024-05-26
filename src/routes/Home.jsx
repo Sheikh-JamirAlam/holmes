@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from "react";
+import axios from "axios";
 import Navbar from "../components/Navbar";
 import OfferItem from "../components/home/OfferItem";
 import PopularItem from "../components/home/PopularItem";
@@ -18,6 +19,10 @@ export default function Home() {
   const [typeText, setTypeText] = useState("");
   const [isPriceOptionsOpen, setIsPriceOptionsOpen] = useState(false);
   const [priceText, setPriceText] = useState("");
+  const [popularImages, setPopularImages] = useState([]);
+  const [popularDesc, setPopularDesc] = useState([]);
+  const [offerImages, setOfferImages] = useState([]);
+  const [offerDesc, setOfferDesc] = useState([]);
   const locationRef = useRef([]);
 
   const handleSearchTextChange = (e) => {
@@ -40,7 +45,47 @@ export default function Home() {
         setIsPriceOptionsOpen(false);
       }
     });
-  });
+
+    async function getPopularImages() {
+      try {
+        const descPromises = [2, 8, 13, 21].map(async (rid) => {
+          const res = await axios.get(`http://localhost:8080/api/rooms/getroombyid=${rid}`);
+          return res.data;
+        });
+        const descriptions = await Promise.all(descPromises);
+        setPopularDesc(descriptions);
+        const imagePromises = [2, 8, 13, 21].map(async (room) => {
+          const response = await axios.get(`http://localhost:8080/api/images/byroom/${room}`);
+          return response.data[0];
+        });
+        const images = await Promise.all(imagePromises);
+        setPopularImages(images);
+      } catch (err) {
+        console.error(err);
+      }
+    }
+    getPopularImages();
+
+    async function getOfferImages() {
+      try {
+        const descPromises = [10, 3, 17].map(async (rid) => {
+          const res = await axios.get(`http://localhost:8080/api/rooms/getroombyid=${rid}`);
+          return res.data;
+        });
+        const descriptions = await Promise.all(descPromises);
+        setOfferDesc(descriptions);
+        const imagePromises = [10, 3, 17].map(async (room) => {
+          const response = await axios.get(`http://localhost:8080/api/images/byroom/${room}`);
+          return response.data[0];
+        });
+        const images = await Promise.all(imagePromises);
+        setOfferImages(images);
+      } catch (err) {
+        console.error(err);
+      }
+    }
+    getOfferImages();
+  }, []);
 
   return (
     <main>
@@ -99,10 +144,37 @@ export default function Home() {
           <p>Browse Our Best PG's/Flat's and Select Your Perfect Room.</p>
         </div>
         <div className="popular-items">
-          <PopularItem background="./images/Home/popular-1.png" />
-          <PopularItem background="./images/Home/popular-2.png" />
-          <PopularItem background="./images/Home/popular-3.png" />
-          <PopularItem background="./images/Home/popular-4.png" />
+          {popularImages.length === 4 ? (
+            <>
+              <PopularItem
+                background={`data:image/jpeg;base64,${popularImages[0]}`}
+                id={popularDesc[0].roomId}
+                location={popularDesc[0].roomAddress.slice(0, popularDesc[0].roomAddress.indexOf(","))}
+              />
+              <PopularItem
+                background={`data:image/jpeg;base64,${popularImages[1]}`}
+                id={popularDesc[1].roomId}
+                location={popularDesc[1].roomAddress.slice(0, popularDesc[1].roomAddress.indexOf(","))}
+              />
+              <PopularItem
+                background={`data:image/jpeg;base64,${popularImages[2]}`}
+                id={popularDesc[2].roomId}
+                location={popularDesc[2].roomAddress.slice(0, popularDesc[2].roomAddress.indexOf(","))}
+              />
+              <PopularItem
+                background={`data:image/jpeg;base64,${popularImages[3]}`}
+                id={popularDesc[3].roomId}
+                location={popularDesc[3].roomAddress.slice(0, popularDesc[3].roomAddress.indexOf(","))}
+              />
+            </>
+          ) : (
+            <>
+              <PopularItem loading={true} />
+              <PopularItem loading={true} />
+              <PopularItem loading={true} />
+              <PopularItem loading={true} />
+            </>
+          )}
         </div>
       </section>
       {/* Offers Section */}
@@ -112,9 +184,46 @@ export default function Home() {
           <p>Avail Exclusive Deals</p>
         </div>
         <div className="offers-items">
-          <OfferItem background="./images/Home/offer-1.png" />
-          <OfferItem background="./images/Home/offer-2.png" />
-          <OfferItem background="./images/Home/offer-3.png" />
+          {offerImages.length === 3 ? (
+            <>
+              <OfferItem
+                background={`data:image/jpeg;base64,${offerImages[0]}`}
+                id={offerDesc[0].roomId}
+                location={offerDesc[0].roomAddress}
+                price={offerDesc[0].roomPrice}
+                rooms={offerDesc[0].roomRooms}
+                bath={offerDesc[0].roomBathroom}
+                guests={offerDesc[0].roomGuests}
+                rating={offerDesc[0].roomRating}
+              />
+              <OfferItem
+                background={`data:image/jpeg;base64,${offerImages[1]}`}
+                id={offerDesc[1].roomId}
+                location={offerDesc[1].roomAddress}
+                price={offerDesc[1].roomPrice}
+                rooms={offerDesc[1].roomRooms}
+                bath={offerDesc[1].roomBathroom}
+                guests={offerDesc[1].roomGuests}
+                rating={offerDesc[1].roomRating}
+              />
+              <OfferItem
+                background={`data:image/jpeg;base64,${offerImages[2]}`}
+                id={offerDesc[2].roomId}
+                location={offerDesc[2].roomAddress}
+                price={offerDesc[2].roomPrice}
+                rooms={offerDesc[2].roomRooms}
+                bath={offerDesc[2].roomBathroom}
+                guests={offerDesc[2].roomGuests}
+                rating={offerDesc[2].roomRating}
+              />
+            </>
+          ) : (
+            <>
+              <OfferItem loading={true} />
+              <OfferItem loading={true} />
+              <OfferItem loading={true} />
+            </>
+          )}
         </div>
       </section>
       {/* Video Section */}

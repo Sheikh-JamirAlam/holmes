@@ -307,6 +307,9 @@ main {
     &>div {
       height: 15rem;
       border-radius: 15px 15px 0 0;
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
     }
 
     &>.details {
@@ -322,7 +325,7 @@ main {
       }
 
       &>div {
-        width: 40%;
+        width: fit-content;
         margin-top: 0.75rem;
         display: grid;
         gap: 0.5rem;
@@ -462,5 +465,26 @@ main {
         font-weight: 600;
       }
     }
+  }
+}
+
+.popular-loading-svg-container:has(.loading-svg) {
+  height: 273px;
+  display: flex;
+  justify-content: center;
+
+  &.offer-loading {
+    height: 451px;
+
+    &>.loading-svg {
+      margin-top: 5rem;
+    }
+  }
+
+  &>.loading-svg {
+    width: 3rem;
+    height: 3rem;
+    font-size: 26px;
+    color: var(--accent-blue);
   }
 }

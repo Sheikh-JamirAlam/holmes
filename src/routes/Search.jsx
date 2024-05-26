@@ -116,7 +116,7 @@ export default function Search() {
         setIsSearchOpen(false);
       }
     });
-  });
+  }, []);
 
   useEffect(() => {
     async function searchRooms() {
