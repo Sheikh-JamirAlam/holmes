@@ -24,7 +24,7 @@ export default function Payment() {
       if (res.data === "Reserved Succesfully") {
         const response = await axios.post("http://localhost:8080/api/payment/proceed", {
           rid: searchParams.get("rid"),
-          uid: userEmail,
+          umail: userEmail,
           amount: searchParams.get("amount"),
         });
         if (response.data === "Payment successful") {

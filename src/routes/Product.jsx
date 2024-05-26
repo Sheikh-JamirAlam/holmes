@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Avatar, Backdrop } from "@mui/material";
 import axios from "axios";
+import Cookies from "js-cookie";
 import { NumericFormat } from "react-number-format";
 import Navbar from "../components/Navbar";
 import { AddCircle, Loading, Star, SubtractCircle } from "../components/Icons";
@@ -18,6 +19,8 @@ export default function Product() {
   const [room, setRoom] = useState(null);
   const [owner, setOwner] = useState(null);
   const [images, setImages] = useState([]);
+  const [canReview, setCanReview] = useState(false);
+  const userEmail = Cookies.get("auth");
 
   const handleReserve = () => {
     navigate(`/payment?rid=${rid}&amount=${room?.roomPrice}`);
@@ -29,7 +32,6 @@ export default function Product() {
         const res = await axios.get(`http://localhost:8080/api/rooms/getroombyid=${rid}`);
         if (res.data.roomOwner) {
           setRoom(res.data);
-          console.log(res.data);
           const ownerDataRes = await axios.get(`http://localhost:8080/api/owners/getownerbyid=${res.data.roomOwner}`);
           setOwner(ownerDataRes.data);
         }
@@ -41,6 +43,20 @@ export default function Product() {
     }
     getRoomInfo();
   }, [rid]);
+
+  useEffect(() => {
+    async function findUser() {
+      try {
+        const res = await axios.get(`http://localhost:8080/api/payment/paymentByEmail?email=${userEmail}`);
+        if (res.data) {
+          setCanReview(true);
+        }
+      } catch (err) {
+        console.error(err);
+      }
+    }
+    findUser();
+  }, [userEmail]);
 
   return (
     <main>
@@ -149,6 +165,11 @@ export default function Product() {
       <section className="product-review-section">
         <h1>Guest reviews</h1>
         <ReviewItem rid={rid} />
+        {canReview && (
+          <button className="btn" onClick={() => navigate(`/review?rid=${rid}`)}>
+            Write a Review
+          </button>
+        )}
       </section>
       <Footer />
     </main>

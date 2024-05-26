@@ -248,6 +248,10 @@
 .product-review-section {
   padding: 2rem 25rem;
 
+  &>.btn {
+    width: 10rem;
+  }
+
   &>h1 {
     font-size: 22px;
     font-weight: 500;
