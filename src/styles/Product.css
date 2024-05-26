@@ -232,6 +232,14 @@
       &>.btn {
         width: 100%;
         border-radius: 10px;
+
+        &:disabled {
+          background-color: var(--lighter-blue);
+
+          &:active {
+            transform: scale(1);
+          }
+        }
       }
     }
   }

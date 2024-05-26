@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { Avatar, Backdrop } from "@mui/material";
 import axios from "axios";
 import { NumericFormat } from "react-number-format";
@@ -12,11 +12,16 @@ import Facilities from "../components/product/Facilities";
 
 export default function Product() {
   const { rid } = useParams();
+  const navigate = useNavigate();
   const [imageOpen, setImageOpen] = useState([false, ""]);
   const [guestNumber, setGuestNumber] = useState(1);
   const [room, setRoom] = useState(null);
   const [owner, setOwner] = useState(null);
   const [images, setImages] = useState([]);
+
+  const handleReserve = () => {
+    navigate(`/payment?rid=${rid}&amount=${room?.roomPrice}`);
+  };
 
   useEffect(() => {
     async function getRoomInfo() {
@@ -24,6 +29,7 @@ export default function Product() {
         const res = await axios.get(`http://localhost:8080/api/rooms/getroombyid=${rid}`);
         if (res.data.roomOwner) {
           setRoom(res.data);
+          console.log(res.data);
           const ownerDataRes = await axios.get(`http://localhost:8080/api/owners/getownerbyid=${res.data.roomOwner}`);
           setOwner(ownerDataRes.data);
         }
@@ -134,7 +140,9 @@ export default function Product() {
                 <AddCircle onClick={() => setGuestNumber((prev) => (prev < room?.roomGuests ? prev + 1 : prev))} />
               </div>
             </div>
-            <button className="btn">Reserve</button>
+            <button className="btn" onClick={handleReserve} disabled={room?.roomReserve}>
+              {room?.roomReserve ? "Reserved" : "Reserve"}
+            </button>
           </div>
         </section>
       </section>

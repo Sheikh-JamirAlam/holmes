@@ -1,22 +1,41 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
+import axios from "axios";
+import Cookies from "js-cookie";
 import Backdrop from "@mui/material/Backdrop";
 import "../styles/Payment.css";
 
 export default function Payment() {
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
   const [open, setOpen] = useState(false);
+  const userEmail = Cookies.get("auth");
 
   const handleClose = () => {
     setOpen(false);
-    navigate("/");
+    navigate(`/rooms/${searchParams.get("rid")}`);
   };
   const handleOpen = () => {
-    setOpen(true);
     document.getElementById("checkmark").classList.add("checkmark-animate");
-    setTimeout(() => {
-      handleClose();
-    }, 2000);
+    async function handlePayment() {
+      const res = await axios.post("http://localhost:8080/api/rooms/reserve", {
+        roomId: searchParams.get("rid"),
+      });
+      if (res.data === "Reserved Succesfully") {
+        const response = await axios.post("http://localhost:8080/api/payment/proceed", {
+          rid: searchParams.get("rid"),
+          uid: userEmail,
+          amount: searchParams.get("amount"),
+        });
+        if (response.data === "Payment successful") {
+          setOpen(true);
+          setTimeout(() => {
+            handleClose();
+          }, 1500);
+        }
+      }
+    }
+    handlePayment();
   };
 
   return (
