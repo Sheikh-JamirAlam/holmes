@@ -102,3 +102,56 @@
   .payment-container .payment-form-container .payment-submit-btn:hover {
     background: #b4b2b2;
   }
+
+  .payment-success-container {
+    height: 25rem;
+    width: 25rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #f0f8ff;
+  }
+
+  .checkmark-circle {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: #4CAF50;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin-bottom: 20px;
+  }
+
+  .checkmark {
+    width: 50px;
+    height: 25px;
+    border: solid white;
+    border-width: 0 0 5px 5px;
+    transform: rotate(-45deg);
+    position: absolute;
+    opacity: 0;
+  }
+
+  .checkmark-animate {
+    animation: checkmark 0.5s ease-in-out forwards;
+  }
+
+  @keyframes checkmark {
+    to {
+      opacity: 1;
+      transform: rotate(-45deg) scale(1.5);
+    }
+  }
+
+  .paymentS-h1 {
+    font-size: 2rem;
+    color: #333;
+  }
+
+  .paymentS-p {
+    font-size: 1.2rem;
+    color: #666;
+  }
