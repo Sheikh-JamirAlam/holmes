@@ -1,18 +1,39 @@
+import { useNavigate } from "react-router-dom";
+import { NumericFormat } from "react-number-format";
+import { Loading } from "../Icons";
+
 export default function OfferItem(props) {
-  return (
-    <div>
-      <div style={{ background: `url(${props.background})` }}></div>
-      <div className="details">
-        <p>₹10,000</p>
-        <div>
-          <span>2 Beds</span>
-          <span>1 Bath</span>
-          <span>3 Rooms</span>
-          <span>Kitchen</span>
-        </div>
-        <span>Rajarhat, Kolkata</span>
-        <button className="btn">View Details</button>
+  const navigate = useNavigate();
+
+  if (props.loading)
+    return (
+      <div className="popular-loading-svg-container offer-loading">
+        <Loading className="loading-svg" />
       </div>
-    </div>
-  );
+    );
+  else
+    return (
+      <div>
+        <div style={{ backgroundImage: `url(${props.background})` }}></div>
+        <div className="details">
+          <p>
+            ₹<NumericFormat className="reserve-cost" displayType="text" value={props.price} thousandsGroupStyle="lakh" thousandSeparator="," />
+          </p>
+          <div>
+            <span>
+              {props.rooms} Room{props.rooms > 1 ? "s" : ""}
+            </span>
+            <span>
+              {props.bath} Bathroom{props.bath > 1 ? "s" : ""}
+            </span>
+            <span>{props.guests} Guests</span>
+            <span>{props.rating} Rating</span>
+          </div>
+          <span>{props.location}</span>
+          <button className="btn" onClick={() => navigate(`/rooms/${props.id}`)}>
+            View Details
+          </button>
+        </div>
+      </div>
+    );
 }

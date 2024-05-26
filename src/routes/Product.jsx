@@ -4,7 +4,7 @@ import { Avatar, Backdrop } from "@mui/material";
 import axios from "axios";
 import { NumericFormat } from "react-number-format";
 import Navbar from "../components/Navbar";
-import { AddCircle, Star, SubtractCircle } from "../components/Icons";
+import { AddCircle, Loading, Star, SubtractCircle } from "../components/Icons";
 import "../styles/Product.css";
 import ReviewItem from "../components/product/ReviewItem";
 import Footer from "../components/Footer";
@@ -16,6 +16,7 @@ export default function Product() {
   const [guestNumber, setGuestNumber] = useState(1);
   const [room, setRoom] = useState(null);
   const [owner, setOwner] = useState(null);
+  const [images, setImages] = useState([]);
 
   useEffect(() => {
     async function getRoomInfo() {
@@ -26,6 +27,8 @@ export default function Product() {
           const ownerDataRes = await axios.get(`http://localhost:8080/api/owners/getownerbyid=${res.data.roomOwner}`);
           setOwner(ownerDataRes.data);
         }
+        const response = await axios.get(`http://localhost:8080/api/images/byroom/${rid}`);
+        setImages(response.data);
       } catch (err) {
         console.error(err);
       }
@@ -42,33 +45,47 @@ export default function Product() {
       <section className="product-hero-section">
         <h1>{room?.roomName}</h1>
         <div className="product-hero-img">
-          <div
-            onClick={() => setImageOpen([true, "https://a0.muscache.com/im/pictures/7fa55ecc-3c87-4347-a0d0-6c8485a0b632.jpg?im_w=1200"])}
-            className="product-main-img"
-            style={{ backgroundImage: "url('https://a0.muscache.com/im/pictures/7fa55ecc-3c87-4347-a0d0-6c8485a0b632.jpg?im_w=1200')" }}
-          ></div>
+          {images.length === 5 ? (
+            <div onClick={() => setImageOpen([true, `data:image/jpeg;base64,${images[0]}`])} className="product-main-img" style={{ backgroundImage: `url(data:image/jpeg;base64,${images[0]})` }}></div>
+          ) : (
+            <div className="popular-loading-svg-container product-loading-main">
+              <Loading className="loading-svg" />
+            </div>
+          )}
           <Backdrop className="product-backdrop" sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }} open={imageOpen[0]} onClick={() => setImageOpen((prev) => prev.with(0, false))}>
             <img className="product-zoomed-img" src={imageOpen[1]} alt="room" />
           </Backdrop>
           <div className="product-other-img">
-            <div
-              onClick={() => setImageOpen([true, "https://a0.muscache.com/im/pictures/7fa55ecc-3c87-4347-a0d0-6c8485a0b632.jpg?im_w=1200"])}
-              style={{ backgroundImage: "url('https://a0.muscache.com/im/pictures/7fa55ecc-3c87-4347-a0d0-6c8485a0b632.jpg?im_w=1200')" }}
-            ></div>
-            <div
-              onClick={() => setImageOpen([true, "https://a0.muscache.com/im/pictures/7fa55ecc-3c87-4347-a0d0-6c8485a0b632.jpg?im_w=1200"])}
-              style={{ backgroundImage: "url('https://a0.muscache.com/im/pictures/7fa55ecc-3c87-4347-a0d0-6c8485a0b632.jpg?im_w=1200')" }}
-            ></div>
+            {images.length === 5 ? (
+              <div onClick={() => setImageOpen([true, `data:image/jpeg;base64,${images[1]}`])} style={{ backgroundImage: `url(data:image/jpeg;base64,${images[1]})` }}></div>
+            ) : (
+              <div className="popular-loading-svg-container product-loading">
+                <Loading className="loading-svg" />
+              </div>
+            )}
+            {images.length === 5 ? (
+              <div onClick={() => setImageOpen([true, `data:image/jpeg;base64,${images[2]}`])} style={{ backgroundImage: `url(data:image/jpeg;base64,${images[2]})` }}></div>
+            ) : (
+              <div className="popular-loading-svg-container product-loading">
+                <Loading className="loading-svg" />
+              </div>
+            )}
           </div>
           <div className="product-other-img">
-            <div
-              onClick={() => setImageOpen([true, "https://a0.muscache.com/im/pictures/7fa55ecc-3c87-4347-a0d0-6c8485a0b632.jpg?im_w=1200"])}
-              style={{ backgroundImage: "url('https://a0.muscache.com/im/pictures/7fa55ecc-3c87-4347-a0d0-6c8485a0b632.jpg?im_w=1200')" }}
-            ></div>
-            <div
-              onClick={() => setImageOpen([true, "https://a0.muscache.com/im/pictures/7fa55ecc-3c87-4347-a0d0-6c8485a0b632.jpg?im_w=1200"])}
-              style={{ backgroundImage: "url('https://a0.muscache.com/im/pictures/7fa55ecc-3c87-4347-a0d0-6c8485a0b632.jpg?im_w=1200')" }}
-            ></div>
+            {images.length === 5 ? (
+              <div onClick={() => setImageOpen([true, `data:image/jpeg;base64,${images[3]}`])} style={{ backgroundImage: `url(data:image/jpeg;base64,${images[3]})` }}></div>
+            ) : (
+              <div className="popular-loading-svg-container product-loading">
+                <Loading className="loading-svg" />
+              </div>
+            )}
+            {images.length === 5 ? (
+              <div onClick={() => setImageOpen([true, `data:image/jpeg;base64,${images[4]}`])} style={{ backgroundImage: `url(data:image/jpeg;base64,${images[4]})` }}></div>
+            ) : (
+              <div className="popular-loading-svg-container product-loading">
+                <Loading className="loading-svg" />
+              </div>
+            )}
           </div>
         </div>
       </section>
@@ -100,11 +117,7 @@ export default function Product() {
           <Facilities rid={rid} />
           <div className="product-about">
             <h3>About this place</h3>
-            <p>
-              {room?.roomDescription}
-              Cozy room, fully stocked in a bungalow with garden view. Ideal ONLY for single travelers seeking safe and comfortable short/long-term stay. Green view, well designed, warm yet bright
-              space, includes attached bath, basic pantry, clean linen, A/C, high-speed WiFi. Key to your room & the main door provided for convenience.
-            </p>
+            <p>{room?.roomDescription}</p>
           </div>
         </section>
         <section className="product-reserve-container">

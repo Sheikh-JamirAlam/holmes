@@ -39,7 +39,9 @@ export default function Navbar() {
         <a href="/about-us">
           <p>About</p>
         </a>
-        <p>Location</p>
+        <a href="/faq">
+          <p>FAQ</p>
+        </a>
         <a href="/contact-us">
           <p>Contact</p>
         </a>
