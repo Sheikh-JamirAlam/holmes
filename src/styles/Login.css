@@ -37,6 +37,19 @@ body {
   display: grid;
   gap: 1rem;
   margin: 1.5rem 0;
+
+  &>a {
+    width: fit-content;
+    color: var(--dark-blue);
+    text-decoration: none;
+    margin-left: auto;
+
+    &>p {
+      width: fit-content;
+      font-size: 14px;
+      font-weight: 700;
+    }
+  }
 }
 
 .input {

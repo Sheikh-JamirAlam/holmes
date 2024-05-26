@@ -50,6 +50,9 @@ export default function Login() {
             <input type={isPassHidden ? "password" : "text"} placeholder="Enter password" value={pass} onChange={(e) => setPass(e.target.value)} />
             <span onClick={() => setIsPassHidden(!isPassHidden)}>{isPassHidden ? <PhEyeClosed /> : <PhEye />}</span>
           </div>
+          <a href="/forgot-pass">
+            <p className="login-forgot-pass">Forgot password?</p>
+          </a>
           <button className="button" onClick={handleLogin}>
             Sign in
           </button>

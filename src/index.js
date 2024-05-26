@@ -16,6 +16,7 @@ import Review from "./routes/Review";
 import FAQPage from "./routes/Faq";
 import TermsandConditions from "./routes/TermsandConditions";
 import PrivacyPolicy from "./routes/Privacy";
+import ForgotPass from "./routes/ForgotPass";
 
 const router = createBrowserRouter([
   {
@@ -73,6 +74,10 @@ const router = createBrowserRouter([
   {
     path: "/privacy",
     element: <PrivacyPolicy />,
+  },
+  {
+    path: "/forgot-pass",
+    element: <ForgotPass />,
   },
 ]);
 
