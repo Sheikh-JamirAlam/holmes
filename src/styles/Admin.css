@@ -1,140 +1,64 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
-  body {
-    background-color: var(--secondary-white);
-    font-family: Inter, sans-serif;
-  }
-  
-  .admin-container {
-    background-color: var(--primary-white);
-    width: 30rem;
-    padding: 3rem;
-    margin: 10rem auto;
-    border-radius: 15px;
-  }
-  
-  .heading {
-    font-size: 36px;
-    margin-bottom: 0.5rem;
-    font-family: Expletus Sans, sans-serif;
-    font-weight: 700;
-    color: var(--dark-blue);
-  }
-  
-  .input-container {
-    display: grid;
-    gap: 1rem;
-    margin: 1.5rem 0;
-  }
-  
-  .input {
-    padding: 0.75rem 1rem;
-    border: 1px solid var(--secondary-white);
-    border-radius: 5px;
+.admin-main-container {
+  padding: 3rem 0;
+  background-color: transparent;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.admin-dashboard-container {
+  width: 45rem;
+  padding: 8rem 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  justify-content: center;
+  align-items: center;
+  gap: 5rem;
+}
+
+.edit-btn {
+  padding: 5px;
+  background-color: #c0e8bc;
+  border: 1px solid #5ea358;
+  cursor: pointer;
+}
+
+.del-btn {
+  margin-left: 1rem;
+  padding: 5px;
+  background-color: #dea9a9;
+  border: 1px solid #692525;
+  cursor: pointer;
+}
+
+.admin-close.close-cross {
+  top: 0.5rem;
+}
+
+.admin-backdrop {
+  width: 100%;
+  height: 100vh;
+  padding: 10rem 35rem;
+  top: 0;
+  left: 0;
+  position: absolute;
+
+  &>div {
+    padding: 2rem;
     display: flex;
-    gap: 0.5rem;
-  
-    & span {
-      display: flex;
-      font-size: 18px;
-      cursor: pointer;
-    }
-  
-    &>input,
-    &>textarea {
-      width: 100%;
-      background-color: transparent;
-      font-family: Inter, sans-serif;
-      font-size: 14px;
-      border: none;
-      outline: none;
-  
-      &::-webkit-inner-spin-button,
-      &::-webkit-outer-spin-button {
-        -webkit-appearance: none;
-        margin: 0;
-      }
-    }
-  
-    &>textarea {
-      resize: none;
-  
-      &::-webkit-scrollbar {
-        display: none;
-      }
-    }
-  }
-  
-  .img-input {
     gap: 1rem;
-  
-    &>input {
-      display: none;
-    }
-  
-    &>label {
-      width: 5rem;
-      height: 5rem;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      border: 2px dashed var(--primary-grey);
-      border-radius: 10px;
+    flex-direction: column;
+    background-color: #f0f5f7;
+    filter: drop-shadow(0 4px 3px rgb(0 0 0 / 0.07)) drop-shadow(0 2px 2px rgb(0 0 0 / 0.06));
+
+    &>span {
+      margin-left: auto;
       cursor: pointer;
-  
-      &>svg {
-        font-size: 30px;
-        color: var(--primary-grey);
-      }
-    }
-  
-    &>img {
-      width: 5rem;
-      height: 5rem;
     }
   }
-  
-  .button {
-    margin: 0.5rem 0 0;
-    padding: 0.75rem 1rem;
-    border: none;
-    border-radius: 5px;
-    outline: none;
-    background-color: var(--dark-blue);
-    color: var(--primary-white);
-    font-family: Inter, sans-serif;
-    font-weight: 700;
-    font-size: 16px;
-    cursor: pointer;
-    transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-    transition-duration: 150ms;
-  
-    &:hover {
-      background-color: var(--lighter-blue);
-    }
-  
-    &:active {
-      transform: scale(0.95);
-    }
-  }
-  
-  .signup {
-    &>a {
-      text-decoration: none;
-      color: var(--dark-blue);
-      font-weight: 700;
-    }
-  }
-  
-  .close-cross {
-    position: absolute;
-    top: 1.5rem;
-    right: 1.5rem;
-    font-size: 24px;
-    color: var(--darker-grey);
-  }
+}
+
+.invisible {
+  display: none;
+}

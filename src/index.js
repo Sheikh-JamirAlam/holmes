@@ -17,6 +17,11 @@ import FAQPage from "./routes/Faq";
 import TermsandConditions from "./routes/TermsandConditions";
 import PrivacyPolicy from "./routes/Privacy";
 import ForgotPass from "./routes/ForgotPass";
+import AdminDashboard from "./routes/AdminDashboard";
+import AdminUserDashboard from "./routes/AdminUserDashboard";
+import AdminRoomDashboard from "./routes/AdminRoomDashboard";
+import AdminOwnerDashboard from "./routes/AdminOwnerDashboard";
+import AdminFacilityDashboard from "./routes/AdminFacilityDashboard";
 
 const router = createBrowserRouter([
   {
@@ -56,10 +61,6 @@ const router = createBrowserRouter([
     element: <Review />,
   },
   {
-    path: "/admin-login",
-    element: <AdminLogin />,
-  },
-  {
     path: "/payment",
     element: <Payment />,
   },
@@ -78,6 +79,30 @@ const router = createBrowserRouter([
   {
     path: "/forgot-pass",
     element: <ForgotPass />,
+  },
+  {
+    path: "/admin-login",
+    element: <AdminLogin />,
+  },
+  {
+    path: "/admin/dashboard",
+    element: <AdminDashboard />,
+  },
+  {
+    path: "/admin/userdb",
+    element: <AdminUserDashboard />,
+  },
+  {
+    path: "/admin/roomdb",
+    element: <AdminRoomDashboard />,
+  },
+  {
+    path: "/admin/ownerdb",
+    element: <AdminOwnerDashboard />,
+  },
+  {
+    path: "/admin/facilitydb",
+    element: <AdminFacilityDashboard />,
   },
 ]);
 
