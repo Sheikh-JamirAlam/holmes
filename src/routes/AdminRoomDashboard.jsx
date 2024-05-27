@@ -48,7 +48,7 @@ export default function AdminRoomDashboard() {
 
   const handleDelete = async (room) => {
     try {
-      const res = await axios.post(`http://localhost:8080/api/user/deleteroom=${room.roomId}`);
+      const res = await axios.post(`http://localhost:8080/api/rooms/deleteroom=${room.roomId}`);
       if (res.data === "Room deleted successfully") {
         navigate(0);
       }
@@ -59,7 +59,7 @@ export default function AdminRoomDashboard() {
 
   const handleEditSubmit = async () => {
     try {
-      const res = await axios.post(`http://localhost:8080/api/user/editroom`, {
+      const res = await axios.post(`http://localhost:8080/api/rooms/editroom`, {
         roomId: editRoom.roomId,
         roomName: name,
         roomAddress: address,

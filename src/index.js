@@ -22,6 +22,7 @@ import AdminUserDashboard from "./routes/AdminUserDashboard";
 import AdminRoomDashboard from "./routes/AdminRoomDashboard";
 import AdminOwnerDashboard from "./routes/AdminOwnerDashboard";
 import AdminFacilityDashboard from "./routes/AdminFacilityDashboard";
+import AdminAddRoomDashboard from "./routes/AdminAddRoomDashboard";
 
 const router = createBrowserRouter([
   {
@@ -103,6 +104,10 @@ const router = createBrowserRouter([
   {
     path: "/admin/facilitydb",
     element: <AdminFacilityDashboard />,
+  },
+  {
+    path: "/admin/addroom",
+    element: <AdminAddRoomDashboard />,
   },
 ]);
 

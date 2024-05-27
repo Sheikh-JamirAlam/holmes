@@ -32,6 +32,9 @@ export default function AdminDashboard() {
         </Button>
         <Button variant="contained">Reviews Database</Button>
         <Button variant="contained">Payments Database</Button>
+        <Button variant="contained" color="success" onClick={() => navigate("/admin/addroom")}>
+          Add Rooms
+        </Button>
       </section>
     </main>
   );
