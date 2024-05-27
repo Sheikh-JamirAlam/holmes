@@ -64,9 +64,9 @@ export default function Navbar() {
       </div>
       {isUserLoggedIn ? (
         <div className="account-btns" style={{ gap: "0.5rem" }}>
-          <p>{userData.userName}</p>
+          <p>{userData?.userName}</p>
           <IconButton onClick={handleClick} size="small">
-            <Avatar sx={{ width: 32, height: 32 }} alt={userData.userName} src="/static/images/avatar/1.jpg" />
+            <Avatar sx={{ width: 32, height: 32 }} alt={userData?.userName} src="/static/images/avatar/1.jpg" />
           </IconButton>
           <Menu
             anchorEl={anchorEl}
