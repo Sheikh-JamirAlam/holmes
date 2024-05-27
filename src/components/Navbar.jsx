@@ -1,11 +1,13 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
+import axios from "axios";
 import { IconButton, Avatar, Menu, MenuItem } from "@mui/material";
 import { Logout, Profile } from "./Icons";
 
 export default function Navbar() {
   const navigate = useNavigate();
+  const [userData, setUserData] = useState(null);
   const [isUserLoggedIn, setIsUserLoggedIn] = useState(() => {
     if (Cookies.get("auth")) return true;
     else return false;
@@ -25,6 +27,20 @@ export default function Navbar() {
     setAnchorEl(null);
     if (document.getElementById("heroBG")) document.getElementById("heroBG").style.width = "100%";
   };
+
+  useEffect(() => {
+    async function getUserInfo() {
+      try {
+        const res = await axios.get(`http://localhost:8080/api/user/getuser=${userEmail}`);
+        if (res.data) {
+          setUserData(res.data);
+        }
+      } catch (err) {
+        console.error(err);
+      }
+    }
+    getUserInfo();
+  }, [userEmail]);
 
   return (
     <section className="navbar">
@@ -48,9 +64,9 @@ export default function Navbar() {
       </div>
       {isUserLoggedIn ? (
         <div className="account-btns" style={{ gap: "0.5rem" }}>
-          <p>Jamir Alam</p>
+          <p>{userData.userName}</p>
           <IconButton onClick={handleClick} size="small">
-            <Avatar sx={{ width: 32, height: 32 }} alt="Jamir Alam" src="/static/images/avatar/1.jpg" />
+            <Avatar sx={{ width: 32, height: 32 }} alt={userData.userName} src="/static/images/avatar/1.jpg" />
           </IconButton>
           <Menu
             anchorEl={anchorEl}
