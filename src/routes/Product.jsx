@@ -48,7 +48,7 @@ export default function Product() {
     async function findUser() {
       try {
         const res = await axios.get(`http://localhost:8080/api/payment/paymentByEmail?email=${userEmail}`);
-        if (res.data) {
+        if (res.data && room?.roomReserve) {
           setCanReview(true);
         }
       } catch (err) {
@@ -56,7 +56,7 @@ export default function Product() {
       }
     }
     findUser();
-  }, [userEmail]);
+  }, [room?.roomReserve, userEmail]);
 
   return (
     <main>
