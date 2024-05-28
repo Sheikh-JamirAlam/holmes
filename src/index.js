@@ -23,6 +23,9 @@ import AdminRoomDashboard from "./routes/AdminRoomDashboard";
 import AdminOwnerDashboard from "./routes/AdminOwnerDashboard";
 import AdminFacilityDashboard from "./routes/AdminFacilityDashboard";
 import AdminAddRoomDashboard from "./routes/AdminAddRoomDashboard";
+import AdminPaymentDashboard from "./routes/AdminPaymentDashboard";
+import AdminReviewDashboard from "./routes/AdminReviewDashboard";
+import AdminRoomImageDashboard from "./routes/AdminRoomImageDashboard";
 
 const router = createBrowserRouter([
   {
@@ -104,6 +107,18 @@ const router = createBrowserRouter([
   {
     path: "/admin/facilitydb",
     element: <AdminFacilityDashboard />,
+  },
+  {
+    path: "/admin/paymentdb",
+    element: <AdminPaymentDashboard />,
+  },
+  {
+    path: "/admin/reviewdb",
+    element: <AdminReviewDashboard />,
+  },
+  {
+    path: "/admin/roomimagedb",
+    element: <AdminRoomImageDashboard />,
   },
   {
     path: "/admin/addroom",

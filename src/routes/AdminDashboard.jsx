@@ -23,15 +23,21 @@ export default function AdminDashboard() {
         <Button variant="contained" onClick={() => navigate("/admin/roomdb")}>
           Rooms Database
         </Button>
-        <Button variant="contained">RoomImages Database</Button>
+        <Button variant="contained" onClick={() => navigate("/admin/roomimagedb")}>
+          RoomImages Database
+        </Button>
         <Button variant="contained" onClick={() => navigate("/admin/ownerdb")}>
           Owners Database
         </Button>
         <Button variant="contained" onClick={() => navigate("/admin/facilitydb")}>
           Facilities Database
         </Button>
-        <Button variant="contained">Reviews Database</Button>
-        <Button variant="contained">Payments Database</Button>
+        <Button variant="contained" onClick={() => navigate("/admin/reviewdb")}>
+          Reviews Database
+        </Button>
+        <Button variant="contained" onClick={() => navigate("/admin/paymentdb")}>
+          Payments Database
+        </Button>
         <Button variant="contained" color="success" onClick={() => navigate("/admin/addroom")}>
           Add Rooms
         </Button>

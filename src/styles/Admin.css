@@ -50,7 +50,7 @@
   padding: 10rem 35rem;
   top: 0;
   left: 0;
-  position: absolute;
+  position: fixed;
 
   &>div {
     padding: 2rem;
