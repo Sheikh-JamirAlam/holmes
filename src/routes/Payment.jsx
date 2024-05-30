@@ -3,12 +3,14 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import axios from "axios";
 import Cookies from "js-cookie";
 import Backdrop from "@mui/material/Backdrop";
+import CircularProgress from "@mui/material/CircularProgress";
 import "../styles/Payment.css";
 
 export default function Payment() {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const [open, setOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const userEmail = Cookies.get("auth");
 
   const handleClose = () => {
@@ -17,6 +19,7 @@ export default function Payment() {
   };
   const handleOpen = () => {
     document.getElementById("checkmark").classList.add("checkmark-animate");
+    setIsLoading(true);
     async function handlePayment() {
       const res = await axios.post("http://localhost:8080/api/rooms/reserve", {
         roomId: searchParams.get("rid"),
@@ -27,6 +30,7 @@ export default function Payment() {
           umail: userEmail,
           amount: searchParams.get("amount"),
         });
+        setIsLoading(false);
         if (response.data === "Payment successful") {
           setOpen(true);
           setTimeout(() => {
@@ -125,6 +129,9 @@ export default function Payment() {
                 <h1 className="paymentS-h1">Payment Successful!</h1>
                 <p className="paymentS-p">Thank you for your purchase.</p>
               </div>
+            </Backdrop>
+            <Backdrop sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }} open={isLoading} onClick={() => setIsLoading(false)}>
+              <CircularProgress color="inherit" />
             </Backdrop>
           </div>
         </div>

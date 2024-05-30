@@ -47,7 +47,7 @@ export default function Product() {
   useEffect(() => {
     async function findUser() {
       try {
-        const res = await axios.get(`http://localhost:8080/api/payment/paymentByEmail?email=${userEmail}`);
+        const res = await axios.get(`http://localhost:8080/api/payment/paymentByEmail?email=${userEmail}&rid=${rid}`);
         if (res.data && room?.roomReserve) {
           setCanReview(true);
         }
@@ -56,7 +56,7 @@ export default function Product() {
       }
     }
     findUser();
-  }, [room?.roomReserve, userEmail]);
+  }, [room?.roomReserve, userEmail, rid]);
 
   return (
     <main>
