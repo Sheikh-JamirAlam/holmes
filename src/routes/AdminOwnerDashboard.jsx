@@ -40,11 +40,12 @@ export default function AdminOwnerDashboard() {
   };
 
   const handleEditSubmit = async () => {
+    console.log(editOwner.ownerId);
     try {
       const res = await axios.post(`http://localhost:8080/api/owners/editowner`, {
-        roomId: editOwner.ownerId,
-        roomName: name,
-        roomRating: rating,
+        ownerId: editOwner.ownerId,
+        ownerName: name,
+        ownerRating: rating,
       });
       console.log(res.data);
       if (res.data === "Update successful") {

@@ -30,14 +30,14 @@ export default function AdminFacilityDashboard() {
   const handleOpen = (facility) => {
     document.getElementById("admin-backdrop").classList.remove("invisible");
     setEditFacility(facility);
-    setKitchen(facility.kitchen ? facility.kitchen : "");
-    setAc(facility.ac ? facility.ac : "");
-    setPvtbath(facility.pvtbath ? facility.pvtbath : "");
-    setWifi(facility.wifi ? facility.wifi : "");
-    setFurnished(facility.furnished ? facility.furnished : "");
-    setGeyser(facility.geyser ? facility.geyser : "");
-    setFridge(facility.fridge ? facility.fridge : "");
-    setParking(facility.parking ? facility.parking : "");
+    setKitchen(facility.hasKitchen !== null ? String(facility.hasKitchen) : "");
+    setAc(facility.hasAc !== null ? String(facility.hasAc) : "");
+    setPvtbath(facility.hasPvtbath !== null ? String(facility.hasPvtbath) : "");
+    setWifi(facility.hasWifi !== null ? String(facility.hasWifi) : "");
+    setFurnished(facility.hasFurnished !== null ? String(facility.hasFurnished) : "");
+    setGeyser(facility.hasGeyser !== null ? String(facility.hasGeyser) : "");
+    setFridge(facility.hasFridge !== null ? String(facility.hasFridge) : "");
+    setParking(facility.hasParking !== null ? String(facility.hasParking) : "");
   };
 
   const handleDelete = async (facility) => {
@@ -159,15 +159,15 @@ export default function AdminFacilityDashboard() {
             <p>Has Private Bath</p>
             <input type="text" value={pvtbath} onChange={(e) => setPvtbath(e.target.value)} />
             <p>Has Wifi</p>
-            <input type="number" value={wifi} onChange={(e) => setWifi(e.target.value)} />
+            <input type="text" value={wifi} onChange={(e) => setWifi(e.target.value)} />
             <p>Is Furnished</p>
-            <input type="number" value={furnished} onChange={(e) => setFurnished(e.target.value)} />
+            <input type="text" value={furnished} onChange={(e) => setFurnished(e.target.value)} />
             <p>Has Geyser</p>
             <input type="text" value={geyser} onChange={(e) => setGeyser(e.target.value)} />
             <p>Has Fridge</p>
-            <input type="number" value={fridge} onChange={(e) => setFridge(e.target.value)} />
+            <input type="text" value={fridge} onChange={(e) => setFridge(e.target.value)} />
             <p>Has Parking</p>
-            <input type="number" value={parking} onChange={(e) => setParking(e.target.value)} />
+            <input type="text" value={parking} onChange={(e) => setParking(e.target.value)} />
             <Button variant="contained" onClick={handleEditSubmit}>
               Submit
             </Button>

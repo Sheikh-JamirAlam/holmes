@@ -42,7 +42,7 @@ export default function AdminRoomDashboard() {
     setNrooms(room.roomRooms ? room.roomRooms : "");
     setGuest(room.roomGuests ? room.roomGuests : "");
     setBathrooms(room.roomBathroom ? room.roomBathroom : "");
-    setReserved(room.roomReserve ? room.roomReserve : "");
+    setReserved(room.roomReserve !== null ? String(room.roomReserve) : "");
     setType(room.roomType ? room.roomType : "");
   };
 
@@ -163,7 +163,7 @@ export default function AdminRoomDashboard() {
             ))}
           </TableBody>
         </Table>
-        <div id="admin-backdrop" className="admin-backdrop invisible">
+        <div id="admin-backdrop" className="admin-backdrop room-dashboard invisible">
           <div>
             <span onClick={handleClose}>Close</span>
             <p>Name</p>
