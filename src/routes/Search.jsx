@@ -15,7 +15,6 @@ import "../styles/Search.css";
 
 export default function Search() {
   const [searchParams, setSearchParams] = useSearchParams();
-  const [images, setImages] = useState([]);
   const [searchLocation, setSearchLocation] = useState(searchParams.get("location"));
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchSuggestions, setSearchSuggestions] = useState([]);
@@ -133,8 +132,6 @@ export default function Search() {
           `
         );
         setRoomSearchResult(res.data);
-        const response = await axios.get(`http://localhost:8080/api/images/getfirstofroom`);
-        setImages(response.data);
         setIsLoading(false);
       } catch (err) {
         console.error(err);
@@ -245,7 +242,6 @@ export default function Search() {
               return (
                 <SearchItem
                   key={index}
-                  image={images[index]?.iImage}
                   rid={room.roomId}
                   price={room.roomPrice}
                   location={room.roomAddress}

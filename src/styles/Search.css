@@ -234,6 +234,13 @@
     background-size: cover;
     background-position: center;
     border-radius: 10px;
+
+    &>svg {
+      width: 100%;
+      margin-top: 3rem;
+      font-size: 40px;
+      color: var(--accent-blue);
+    }
   }
 
   &>.search-item-details {
